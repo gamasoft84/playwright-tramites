@@ -14,9 +14,12 @@ test.describe.serial('Trámites', () => {
       await page.goto(`${BASE}/seleccion-tramite`);
       await page.waitForLoadState('networkidle');
 
-      // 2️⃣ Busca el enlace por href — maneja duplicados
+      // 2️⃣ Busca el enlace por href — maneja duplicados y con/sin barra final
       const path = tramite.url.replace(BASE, '');
-      const locator = page.locator(`a[href="${path}"]`);
+      const trimmed = path.replace(/\/$/, '') || '/';
+      const withSlash = trimmed === '/' ? '/' : `${trimmed}/`;
+      const hrefVariants = [...new Set([path, trimmed, withSlash, tramite.url])];
+      const locator = page.locator(hrefVariants.map((h) => `a[href="${h}"]`).join(', '));
       const count = await locator.count();
       if (count > 1) {
         console.warn(`⚠️  WARNING: ${count} enlaces duplicados para ${path} — usando el primero`);
