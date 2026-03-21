@@ -2,8 +2,9 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  // Paralelo: ~mitad de CPUs por defecto si omites workers. Baja a 1 si el servidor aguanta mal muchas sesiones.
+  // Paralelo: sube el número si tu máquina y el servidor lo aguantan (p. ej. 4 u 8). % porcentaje = CPUs.
   fullyParallel: true,
+  workers: 8,
   maxFailures: 0,
   timeout: 30000,
   use: {

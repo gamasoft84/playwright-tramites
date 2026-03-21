@@ -48,7 +48,7 @@ test.describe('Trámites', () => {
 
         // 📸 Screenshot del trámite cargado
         await page.screenshot({
-          path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}-resultado.png`,
+          path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}.png`,
           fullPage: true
         });
 
@@ -67,7 +67,7 @@ test.describe('Trámites', () => {
         if (!page.isClosed()) {
           try {
             await page.screenshot({
-              path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}-error.png`,
+              path: `screenshots/error/${tramite.departamento}-${tramite.tipoTramite}.png`,
               fullPage: true,
             });
           } catch {
@@ -78,7 +78,8 @@ test.describe('Trámites', () => {
         }
 
         console.error(`❌ ERROR [${tramite.departamento}][${tramite.tipoTramite}] ID ${tramite.id}: ${msg}`);
-        // No relanzamos: el siguiente trámite en la serie siempre se ejecuta.
+        // Relanzar para que el reporte HTML marque Failed. Con maxFailures: 0 el resto de pruebas igual se ejecutan.
+        throw error;
       }
 
     });
