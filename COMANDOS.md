@@ -101,3 +101,8 @@ npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]'
 npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; node scripts/enrich-playwright-report.mjs
 
 ```
+
+## Generar .DOCX
+```bash
+node generate-report-docx.js
+```
