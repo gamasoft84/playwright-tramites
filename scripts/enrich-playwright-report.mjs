@@ -1,6 +1,6 @@
 /**
  * Tras `npx playwright test` (con reporter json → test-results/results.json),
- * inyecta en playwright-report/index.html una banda superior con fallidos
+ * inyecta en playwright-report/index.html una banda al final del body con fallidos
  * agrupados por [dependencia] y tipos numerados.
  */
 import fs from 'fs';
@@ -73,13 +73,35 @@ function escapeHtml(s) {
     .replace(/>/g, '&gt;');
 }
 
-function buildInjectedBlock(summaryText, hadFailures) {
-  const preContent = hadFailures
-    ? escapeHtml(summaryText)
-    : escapeHtml('Sin pruebas fallidas en este run.');
+function fechaHoraSistema() {
+  const d = new Date();
+  const fecha = d.toLocaleDateString('es-MX', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+  const hora = d.toLocaleTimeString('es-MX', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  });
+  return `${fecha} ${hora}`;
+}
+
+function buildInjectedBlock(summaryText, failCount) {
+  const preContent =
+    failCount > 0
+      ? escapeHtml(summaryText)
+      : escapeHtml('Sin pruebas fallidas en este run.');
+  const cantidad =
+    failCount === 1
+      ? '1 trámite fallido por dependencia'
+      : `${failCount} trámites fallidos por dependencia`;
+  const titulo = `Resumen: ${cantidad}. ${fechaHoraSistema()} del sistema`;
   return `${MARK_START}
-<div id="tramites-failed-resumen" style="margin:0;padding:14px 18px;background:#fff8e6;border-bottom:2px solid #c9a227;font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.45;">
-  <strong style="display:block;margin-bottom:8px;color:#5c4a00;">Resumen: trámites fallidos por dependencia</strong>
+<div id="tramites-failed-resumen" style="margin:0;padding:14px 18px;background:#fff8e6;border-top:2px solidrgb(226, 210, 160);font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px;line-height:1.45;">
+  <strong style="display:block;margin-bottom:8px;color:#5c4a00;">${escapeHtml(titulo)}</strong>
   <pre style="margin:0;white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:13px;">${preContent}</pre>
 </div>
 ${MARK_END}`;
@@ -100,7 +122,7 @@ function main() {
   const report = JSON.parse(fs.readFileSync(RESULTS_JSON, 'utf8'));
   const pairs = collectFailedPairs(report);
   const summaryText = buildSummaryText(pairs);
-  const block = buildInjectedBlock(summaryText, pairs.length > 0);
+  const block = buildInjectedBlock(summaryText, pairs.length);
 
   let html = fs.readFileSync(INDEX_HTML, 'utf8');
   const reOld = new RegExp(
@@ -109,11 +131,11 @@ function main() {
   );
   html = html.replace(reOld, '\n');
 
-  if (!/<body[^>]*>/i.test(html)) {
-    console.error('enrich-playwright-report: no se encontró <body> en index.html');
+  if (!/<\/body>/i.test(html)) {
+    console.error('enrich-playwright-report: no se encontró </body> en index.html');
     process.exit(1);
   }
-  html = html.replace(/<body([^>]*)>/i, `<body$1>\n${block}\n`);
+  html = html.replace(/<\/body>/i, `\n${block}\n</body>`);
 
   fs.writeFileSync(INDEX_HTML, html);
   console.log(

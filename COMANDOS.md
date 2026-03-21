@@ -63,7 +63,7 @@ Carpetas generadas (suelen estar en `.gitignore`): `test-results/`, `playwright-
 
 ## Resumen en el reporte HTML (`enrich-playwright-report.mjs`)
 
-El script lee fallidos desde `test-results/results.json`, agrupa por dependencia y título `[dep][tipo]` e inserta una banda al inicio de `playwright-report/index.html`.
+El script lee fallidos desde `test-results/results.json`, agrupa por dependencia y título `[dep][tipo]` e inserta una banda al final del `<body>` en `playwright-report/index.html` (justo antes de `</body>`).
 
 ```bash
 node scripts/enrich-playwright-report.mjs
