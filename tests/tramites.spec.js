@@ -67,7 +67,7 @@ test.describe('Trámites', () => {
         if (!page.isClosed()) {
           try {
             await page.screenshot({
-              path: `screenshots/error/${tramite.departamento}-${tramite.tipoTramite}.png`,
+              path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}-error.png`,
               fullPage: true,
             });
           } catch {

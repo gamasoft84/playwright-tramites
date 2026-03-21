@@ -77,12 +77,18 @@ Requiere haber corrido los tests al menos una vez con el reporter `json` activo 
 
 ---
 
-## Reporte Word desde capturas (`generate-report.js`)
+## Reporte Word desde capturas (`scripts/generate-report-docx.js`)
 
-Genera **`reporte-tramites.docx`** en la raíz del proyecto a partir de imágenes `screenshots/*-resultado.png`:
+Genera **`reporte-tramites.docx`** en la **raíz**.
+
+**Orden del documento:** portada → **tabla resumen** (correctas / fallidas / omitidas / total / % por dependencia desde `test-results/results.json`) → **tabla índice de errores** (fallos JSON + listas de tipos; columnas comparan con capturas `*-error.png` y `screenshots/error/`) → **TOC de Word** (solo secciones H1 = cada dependencia) → cuerpo con **rejilla de miniaturas** (3 columnas, ~130 px de ancho) para meter varias capturas por página.
+
+**Capturas:** `screenshots/{dep}-{tipo}.png`, `{dep}-{tipo}-error.png`, `error/{dep}-{tipo}.png`, `*-resultado.png` (legacy).
+
+Tras las pruebas conviene tener `test-results/results.json` actualizado para las tablas estadísticas.
 
 ```bash
-node generate-report.js
+node scripts/generate-report-docx.js
 ```
 
 ---
@@ -130,11 +136,13 @@ npm run test:tramites
 npm run test:tramites:grep -- '\[(aga|agace)\]'
 npm run test:tramites:grep -- '\[cofepris\]'
 npm run test:tramites:grep -- '\[(aga|agace|se)\]'
+
+npm run test:tramites:grep -- '\[(semarnat|agricultura|inbal)\]'
 ```
 
 
 
 ## Generar .DOCX
 ```bash
-node generate-report-docx.js
+node ./scripts/generate-report-docx.js
 ```

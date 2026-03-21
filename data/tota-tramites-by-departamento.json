@@ -1,0 +1,16 @@
+[
+    { "departamento": "se",                 "total": 99  },
+    { "departamento": "cofepris",           "total": 78  },
+    { "departamento": "aga",               "total": 56  },
+    { "departamento": "agace",             "total": 52  },
+    { "departamento": "sedena",            "total": 23  },
+    { "departamento": "agricultura",       "total": 18  },
+    { "departamento": "semarnat",          "total": 11  },
+    { "departamento": "sener",             "total": 10  },
+    { "departamento": "manifestacionvalor","total": 3   },
+    { "departamento": "profepa",           "total": 3   },
+    { "departamento": "inbal",             "total": 3   },
+    { "departamento": "amecafe",           "total": 3   },
+    { "departamento": "inah",              "total": 1   },
+    { "departamento": "stps",              "total": 1   }
+  ]
