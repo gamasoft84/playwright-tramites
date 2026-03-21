@@ -8,4 +8,17 @@ export default defineConfig({
     headless: true,
     baseURL: 'https://front.v30.ultrasist.net',
   },
+  projects: [
+    {
+      name: 'setup',
+      testMatch: '**/auth.setup.js',
+    },
+    {
+      name: 'tramites',
+      dependencies: ['setup'],
+      use: {
+        storageState: 'session/login.json',
+      },
+    },
+  ],
 });
