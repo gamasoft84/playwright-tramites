@@ -45,10 +45,63 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const SCREENSHOTS_DIR = path.join(ROOT, 'screenshots');
 const RESULTS_JSON = path.join(ROOT, 'test-results', 'results.json');
+const PLAYWRIGHT_CONFIG = path.join(ROOT, 'playwright.config.js');
+const TRAMITES_JSON = path.join(ROOT, 'data', 'tramites.json');
 
 const PAIR_RE = /\[([^\]]+)\]\[([^\]]+)\]/;
 const THUMB_COLS = 3;
 const THUMB_WIDTH_PX = 130;
+
+/** Origen del front (misma idea que `use.baseURL` en Playwright). */
+function resolveBaseUrl() {
+  if (fs.existsSync(PLAYWRIGHT_CONFIG)) {
+    const txt = fs.readFileSync(PLAYWRIGHT_CONFIG, 'utf8');
+    const m = txt.match(/baseURL\s*:\s*['"]([^'"]+)['"]/);
+    if (m) return m[1].trim();
+  }
+  if (fs.existsSync(TRAMITES_JSON)) {
+    try {
+      const arr = JSON.parse(fs.readFileSync(TRAMITES_JSON, 'utf8'));
+      const u = Array.isArray(arr) && arr[0]?.url;
+      if (u && /^https?:\/\//i.test(String(u))) {
+        return new URL(String(u)).origin;
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  if (fs.existsSync(RESULTS_JSON)) {
+    try {
+      const report = JSON.parse(fs.readFileSync(RESULTS_JSON, 'utf8'));
+      const u = firstStdoutOkUrl(report);
+      if (u) return new URL(u).origin;
+    } catch {
+      /* ignore */
+    }
+  }
+  return null;
+}
+
+const OK_URL_IN_STDOUT = /✅ OK:\s*(https?:\/\/\S+)/;
+
+function firstStdoutOkUrl(report) {
+  function visit(spec) {
+    for (const t of spec.tests || []) {
+      for (const r of t.results || []) {
+        for (const o of r.stdout || []) {
+          const m = (o.text || '').match(OK_URL_IN_STDOUT);
+          if (m) return m[1];
+        }
+      }
+    }
+  }
+  function walk(suite) {
+    for (const s of suite.specs || []) visit(s);
+    for (const su of suite.suites || []) walk(su);
+  }
+  for (const root of report.suites || []) walk(root);
+  return null;
+}
 
 function sectionTitle(text) {
   return new Paragraph({
@@ -353,8 +406,7 @@ function buildErrorsTable(failedByDep, errorPngByDep) {
       children: [
         headerCell('Dependencia'),
         headerCell('Fallos'),
-        headerCell('Tipos fallidos (test)'),
-        headerCell('Tipos con captura error'),
+        headerCell('Tipos de tramites con error'),
       ],
     }),
   ];
@@ -367,8 +419,7 @@ function buildErrorsTable(failedByDep, errorPngByDep) {
         children: [
           bodyCell(dep),
           bodyCell(jsonSet.size),
-          bodyCell(formatTipoList(jsonSet)),
-          bodyCell(formatTipoList(pngSet)),
+          bodyCell(formatTipoList(jsonSet))
         ],
       }),
     );
@@ -483,6 +534,13 @@ const departamentosOrdenados = Object.keys(porDepartamento).sort((a, b) =>
 
 console.log(`🏢 Dependencias con captura: ${departamentosOrdenados.join(', ') || '(ninguna)'}`);
 
+const baseUrl = resolveBaseUrl();
+if (baseUrl) {
+  console.log(`🌐 Base URL del entorno: ${baseUrl}`);
+} else {
+  console.warn('⚠️  No se detectó baseURL (playwright.config.js / tramites.json / results.json).');
+}
+
 const children = [];
 
 children.push(
@@ -527,7 +585,9 @@ children.push(
     spacing: { after: 200 },
     children: [
       new TextRun({
-        text: 'Miniaturas por dependencia · Estadísticas desde results.json',
+        text: baseUrl
+          ? `Pruebas ejecutadas contra: ${baseUrl}`
+          : 'Pruebas ejecutadas contra: (no detectado — use.baseURL en playwright.config.js o ejecuta tests y vuelve a generar el reporte)',
         italics: true,
         size: 20,
         color: '888888',
@@ -538,35 +598,11 @@ children.push(
 );
 
 children.push(sectionTitle('Resumen estadístico (por dependencia)'));
-children.push(
-  new Paragraph({
-    spacing: { after: 200 },
-    children: [
-      new TextRun({
-        text: 'Fuente: test-results/results.json (última corrida de Playwright).',
-        size: 20,
-        color: '666666',
-        font: 'Arial',
-      }),
-    ],
-  }),
-);
+
 children.push(buildStatsTable(statsByDep));
 
 children.push(sectionTitle('Índice de errores por dependencia'));
-children.push(
-  new Paragraph({
-    spacing: { after: 200 },
-    children: [
-      new TextRun({
-        text: 'Fallos según results.json; capturas *-error.png o carpeta error/ (pueden contrastarse).',
-        size: 20,
-        color: '666666',
-        font: 'Arial',
-      }),
-    ],
-  }),
-);
+
 children.push(buildErrorsTable(failedByDep, errorPngByDep));
 
 children.push(sectionTitle('Índice de contenidos (secciones por dependencia)'));
