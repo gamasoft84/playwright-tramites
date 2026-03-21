@@ -13,6 +13,8 @@
 | Comando | Qué hace |
 |--------|-----------|
 | `npm run test:tramites` | Ejecuta `tests/tramites.spec.js` y **después** corre `scripts/enrich-playwright-report.mjs`. Usa `;` entre comandos: el enriquecimiento del HTML corre **aunque haya tests fallidos**. |
+| `npm run test:tramites:grep` | Igual, pero el patrón de `--grep` lo pasas **tú** después de `--` (ver abajo). Siempre ejecuta el enrich al final. |
+| `npm run test:tramites:aga-agace` | Atajo: mismo flujo con el patrón fijo `[(aga|agace)]` (equivale a un `test:tramites:grep` con ese regex). |
 | `npm run report:enrich` | Solo inyecta el resumen por dependencia en `playwright-report/index.html` (lee `test-results/results.json`). Útil si ya corriste los tests y quieres regenerar la banda sin repetir la suite. |
 
 El script `test` por defecto del `package.json` no está configurado para este proyecto; usa `test:tramites` para las pruebas de trámites.
@@ -95,12 +97,40 @@ node generate-report.js
 npx playwright test --config=playwright.config_Login.js
 ```
 
-## Playwright filtra por el título completo del test (incluye el describe), que se ve como Trámites
-```bash
-npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]'
-npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; node scripts/enrich-playwright-report.mjs
+## Filtrar por dependencia en el título (`--grep`)
 
+Playwright filtra por el **título completo** del test (incluye el `describe`), p. ej. `Trámites › [aga][40401] ID 132`.
+
+**Patrón parametrizable (npm):** todo lo que va después de `--` se pasa a Playwright como único argumento de `--grep`.
+
+```bash
+# Cofepris solamente
+npm run test:tramites:grep -- '\[cofepris\]'
+
+# Varias dependencias (regex)
+npm run test:tramites:grep -- '\[(aga|agace|se)\]'
+
+# Atajo fijo aga + agace
+npm run test:tramites:aga-agace
 ```
+
+Equivalente manual + enrich:
+
+```bash
+npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; npm run report:enrich
+```
+
+
+
+## Prueabas por dependencias
+```bash
+npm run test:tramites
+npm run test:tramites:grep -- '\[(aga|agace)\]'
+npm run test:tramites:grep -- '\[cofepris\]'
+npm run test:tramites:grep -- '\[(aga|agace|se)\]'
+```
+
+
 
 ## Generar .DOCX
 ```bash
