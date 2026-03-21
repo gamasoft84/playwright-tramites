@@ -13,8 +13,8 @@
 | Comando | Qué hace |
 |--------|-----------|
 | `npm run test:tramites` | Ejecuta `tests/tramites.spec.js` y **después** corre `scripts/enrich-playwright-report.mjs`. Usa `;` entre comandos: el enriquecimiento del HTML corre **aunque haya tests fallidos**. |
-| `npm run test:tramites:grep` | Igual, pero el patrón de `--grep` lo pasas **tú** después de `--` (ver abajo). Siempre ejecuta el enrich al final. |
-| `npm run test:tramites:aga-agace` | Atajo: mismo flujo con el patrón fijo `[(aga|agace)]` (equivale a un `test:tramites:grep` con ese regex). |
+| `npm run test:tramites:grep` | `--grep` con patrón que pasas tras `--`, luego **enrich** del HTML y **`npx playwright show-report`** (abre el reporte en el navegador; el proceso sigue hasta que cierres el servidor, p. ej. Ctrl+C en la terminal). |
+| `npm run test:tramites:aga-agace` | Atajo con patrón fijo `[(aga|agace)]`; mismo flujo (tests → enrich → **show-report**). |
 | `npm run report:enrich` | Solo inyecta el resumen por dependencia en `playwright-report/index.html` (lee `test-results/results.json`). Útil si ya corriste los tests y quieres regenerar la banda sin repetir la suite. |
 
 El script `test` por defecto del `package.json` no está configurado para este proyecto; usa `test:tramites` para las pruebas de trámites.
@@ -114,7 +114,9 @@ npm run test:tramites:grep -- '\[(aga|agace|se)\]'
 npm run test:tramites:aga-agace
 ```
 
-Equivalente manual + enrich:
+`test:tramites:grep` y `test:tramites:aga-agace` ejecutan al final **`npx playwright show-report`** (servidor local del reporte HTML). Cierra la terminal o interrumpe con Ctrl+C cuando termines de revisarlo.
+
+Equivalente manual + enrich (sin abrir el navegador):
 
 ```bash
 npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; npm run report:enrich
@@ -122,7 +124,7 @@ npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; npm run re
 
 
 
-## Prueabas por dependencias
+## Pruebas por dependencias
 ```bash
 npm run test:tramites
 npm run test:tramites:grep -- '\[(aga|agace)\]'

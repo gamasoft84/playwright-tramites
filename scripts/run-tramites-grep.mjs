@@ -1,5 +1,6 @@
 /**
- * Ejecuta tramites.spec.js con --grep <patrón> y luego enrich-playwright-report.mjs.
+ * Ejecuta tramites.spec.js con --grep <patrón>, enrich-playwright-report.mjs
+ * y al final `npx playwright show-report`.
  * Uso: npm run test:tramites:grep -- '<regex>'
  */
 import { spawnSync } from 'child_process';
@@ -28,6 +29,8 @@ spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'enrich-playwright-repor
   cwd: ROOT,
   stdio: 'inherit',
 });
+
+spawnSync('npx', ['playwright', 'show-report'], { cwd: ROOT, stdio: 'inherit', shell });
 
 const code = pw.status == null ? (pw.error ? 1 : 0) : pw.status;
 process.exit(code);
