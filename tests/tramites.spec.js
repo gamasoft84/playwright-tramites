@@ -3,8 +3,14 @@ import tramites from '../data/tramites.json' assert { type: 'json' };
 
 const BASE = 'https://front.v30.ultrasist.net';
 
-test.describe.serial('Trámites', () => {
-  // Un poco más que waitForURL (30s) para que el catch pueda anotar y capturar pantalla.
+function isTimeoutError(error) {
+  if (!error || typeof error !== 'object') return false;
+  if (error.name === 'TimeoutError') return true;
+  return /timeout|timed out|exceeded/i.test(String(error.message));
+}
+
+test.describe('Trámites', () => {
+  // Paralelo entre trámites (cada test tiene su propia page). Timeout por test.
   test.describe.configure({ timeout: 45_000 });
 
   for (const tramite of tramites) {
@@ -54,7 +60,7 @@ test.describe.serial('Trámites', () => {
       } catch (error) {
         const msg = error.message.split('\n')[0];
         test.info().annotations.push({
-          type: 'tramite-error',
+          type: isTimeoutError(error) ? 'tramite-timeout' : 'tramite-error',
           description: `${tramite.departamento} ${tramite.tipoTramite} (id ${tramite.id}): ${msg}`,
         });
 
@@ -72,8 +78,7 @@ test.describe.serial('Trámites', () => {
         }
 
         console.error(`❌ ERROR [${tramite.departamento}][${tramite.tipoTramite}] ID ${tramite.id}: ${msg}`);
-        // No relanzamos: el test pasa y los demás trámites siguen ejecutándose.
-        // Para fallar el run de CI en estos casos, sustituye por: throw error;
+        // No relanzamos: el siguiente trámite en la serie siempre se ejecuta.
       }
 
     });
