@@ -1,5 +1,8 @@
 node_modules/
+# Capturas generadas por las pruebas (no versionar)
 screenshots/
+# Word generado localmente
+reporte-tramites.docx
 test-results/
 playwright-report/
 blob-report/
