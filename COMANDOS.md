@@ -146,3 +146,11 @@ npm run test:tramites:grep -- '\[(semarnat|agricultura|inbal)\]'
 ```bash
 node ./scripts/generate-report-docx.js
 ```
+
+
+## Usar ambientes
+```bash
+npm run test:tramites:uat-ultrasist 
+npm run test:tramites:uat-sat       
+npm run test:tramites (default uat-sat)
+```

@@ -1,4 +1,7 @@
 import { defineConfig } from '@playwright/test';
+import { getAmbienteConfig } from './ambientes.mjs';
+
+const { baseURL } = getAmbienteConfig();
 
 export default defineConfig({
   testDir: './tests',
@@ -14,6 +17,7 @@ export default defineConfig({
   timeout: 30000,
   use: {
     headless: true,
-    baseURL: 'https://front.v30.ultrasist.net',
-  }
+    baseURL,
+    ignoreHTTPSErrors: true,
+  },
 });

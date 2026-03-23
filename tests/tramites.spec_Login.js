@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
-import tramites from '../data/tramites.json' assert { type: 'json' };
+import { getAmbienteConfig, loadTramitesNormalized } from '../ambientes.mjs';
 
-const BASE = 'https://front.v30.ultrasist.net';
+const ambiente = getAmbienteConfig();
+const BASE = ambiente.baseURL;
+const tramites = loadTramitesNormalized(ambiente);
 
 test.use({ storageState: 'session/login.json' });
 

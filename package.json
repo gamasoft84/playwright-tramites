@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:tramites": "playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
+    "test:tramites": "cross-env TRAMITES_AMBIENTE=UAT_SAT playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
+    "test:tramites:uat-ultrasist": "cross-env TRAMITES_AMBIENTE=UAT_ULTRASIST playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
+    "test:tramites:uat-sat": "cross-env TRAMITES_AMBIENTE=UAT_SAT playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
     "test:tramites:grep": "node scripts/run-tramites-grep.mjs",
     "test:tramites:aga-agace": "node scripts/run-tramites-grep.mjs '\\[(aga|agace)\\]'",
     "report:enrich": "node scripts/enrich-playwright-report.mjs"
@@ -15,7 +17,8 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.58.2"
+    "@playwright/test": "^1.58.2",
+    "cross-env": "^10.1.0"
   },
   "dependencies": {
     "docx": "^9.6.1",

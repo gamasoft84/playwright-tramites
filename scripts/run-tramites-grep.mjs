@@ -19,10 +19,14 @@ if (!pattern) {
 }
 
 const shell = process.platform === 'win32';
+const env = {
+  ...process.env,
+  TRAMITES_AMBIENTE: process.env.TRAMITES_AMBIENTE || 'UAT_SAT',
+};
 const pw = spawnSync(
   'npx',
   ['playwright', 'test', 'tests/tramites.spec.js', '--grep', pattern],
-  { cwd: ROOT, stdio: 'inherit', shell },
+  { cwd: ROOT, stdio: 'inherit', shell, env },
 );
 
 spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'enrich-playwright-report.mjs')], {
