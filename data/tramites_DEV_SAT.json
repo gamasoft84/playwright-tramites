@@ -1,0 +1,578 @@
+[
+    {
+      "id": "606",
+      "departmento": "se",
+      "tipoTramite": "32616",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/agace/solicitud-de-registro/solicitud"
+    },
+    {
+      "id": "25",
+      "departmento": "se",
+      "tipoTramite": "80101",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/nuevo-programa-industrial/action"
+    },
+    {
+      "id": "26",
+      "departmento": "se",
+      "tipoTramite": "80102",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/autorizacion-programa-nuevo/solicitud"
+    },
+    {
+      "id": "285",
+      "departmento": "se",
+      "tipoTramite": "80103",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitud-immex-modalidad/action"
+    },
+    {
+      "id": "286",
+      "departmento": "se",
+      "tipoTramite": "80104",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitud-immex-modalidad-controladora/action"
+    },
+    {
+      "id": "287",
+      "departmento": "se",
+      "tipoTramite": "80105",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/modalidad-terciarizacion/action"
+    },
+    {
+      "id": "27",
+      "departmento": "se",
+      "tipoTramite": "80202",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/immex-ampliacion-sensibles/programa-immex"
+    },
+    {
+      "id": "28",
+      "departmento": "se",
+      "tipoTramite": "80203",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/immex-registro-solicitud-modality/programa-immex"
+    },
+    {
+      "id": "29",
+      "departmento": "se",
+      "tipoTramite": "80205",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado-registro/programa-immex"
+    },
+    {
+      "id": "245",
+      "departmento": "se",
+      "tipoTramite": "80206",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/modalidad-ampliacion/programa-immex"
+    },
+    {
+      "id": "30",
+      "departmento": "se",
+      "tipoTramite": "80207",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/subfabricante-immex/programa-immex"
+    },
+    {
+      "id": "31",
+      "departmento": "se",
+      "tipoTramite": "80208",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitud-modalidad/programa-immex"
+    },
+    {
+      "id": "288",
+      "departmento": "se",
+      "tipoTramite": "80210",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitud-immex/programa-immex"
+    },
+    {
+      "id": "289",
+      "departmento": "se",
+      "tipoTramite": "80211",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-expansion/programa-immex"
+    },
+    {
+      "id": "246",
+      "departmento": "se",
+      "tipoTramite": "80301",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitud/registro-solicitud"
+    },
+    {
+      "id": "32",
+      "departmento": "se",
+      "tipoTramite": "80302",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitud-modificacion/registro-solicitud"
+    },
+    {
+      "id": "314",
+      "departmento": "se",
+      "tipoTramite": "80303",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitude/registro-solicitude"
+    },
+    {
+      "id": "600",
+      "departmento": "se",
+      "tipoTramite": "80306",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/immex-modificacion/registro-modificacion"
+    },
+    {
+      "id": "33",
+      "departmento": "se",
+      "tipoTramite": "80308",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/modificacion/programas-immex"
+    },
+    {
+      "id": "290",
+      "departmento": "se",
+      "tipoTramite": "80314",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/immex-modificacion-cambio-de-sector/programas-immex"
+    },
+    {
+      "id": "291",
+      "departmento": "se",
+      "tipoTramite": "80316",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/modificaciones-immex/tipo-de-persona"
+    },
+    {
+      "id": "34",
+      "departmento": "se",
+      "tipoTramite": "90101",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/autorizacion-prosec/prosec"
+    },
+    {
+      "id": "292",
+      "departmento": "se",
+      "tipoTramite": "90102",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/autorizacion-prosec-productor/productores-indirectos"
+    },
+    {
+      "id": "35",
+      "departmento": "se",
+      "tipoTramite": "90201",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/expansion-de-productores/prosec-tabla"
+    },
+    {
+      "id": "293",
+      "departmento": "se",
+      "tipoTramite": "90202",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/ampliacion-prosec-productor/programas-disponibles-ampliar"
+    },
+    {
+      "id": "315",
+      "departmento": "se",
+      "tipoTramite": "90302",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/programa-prosec/programas-prosec"
+    },
+    {
+      "id": "294",
+      "departmento": "se",
+      "tipoTramite": "90303",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/catalogos/programas-prosec"
+    },
+    {
+      "id": "295",
+      "departmento": "se",
+      "tipoTramite": "90304",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/modificaciones-immex-prosec/lista-programas"
+    },
+    {
+      "id": "36",
+      "departmento": "se",
+      "tipoTramite": "90305",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/prosec-modificacion/lista-programas-prosec"
+    },
+    {
+      "id": "37",
+      "departmento": "se",
+      "tipoTramite": "110101",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/pantallas/datosdecomponentes"
+    },
+    {
+      "id": "38",
+      "departmento": "se",
+      "tipoTramite": "110102",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/exportador-autorizado/registrar-solicitud"
+    },
+    {
+      "id": "39",
+      "departmento": "se",
+      "tipoTramite": "110201",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro/solicitud"
+    },
+    {
+      "id": "40",
+      "departmento": "se",
+      "tipoTramite": "110202",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado-validacion/validacion"
+    },
+    {
+      "id": "41",
+      "departmento": "se",
+      "tipoTramite": "110203",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/tecnicos/solicitante"
+    },
+    {
+      "id": "42",
+      "departmento": "se",
+      "tipoTramite": "110204",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/pexim/certificado-origen"
+    },
+    {
+      "id": "323",
+      "departmento": "se",
+      "tipoTramite": "110205",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validar-certificado/peru"
+    },
+    {
+      "id": "115",
+      "departmento": "se",
+      "tipoTramite": "110207",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/reportes/solicitud"
+    },
+    {
+      "id": "43",
+      "departmento": "se",
+      "tipoTramite": "110208",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validar-inicialmente/certificado-origen"
+    },
+    {
+      "id": "44",
+      "departmento": "se",
+      "tipoTramite": "110209",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado-sgp/solicitud"
+    },
+    {
+      "id": "158",
+      "departmento": "se",
+      "tipoTramite": "110210",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/tramites-disponibles/solicitud"
+    },
+    {
+      "id": "45",
+      "departmento": "se",
+      "tipoTramite": "110211",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validar-certificado/cam"
+    },
+    {
+      "id": "116",
+      "departmento": "se",
+      "tipoTramite": "110212",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validacion-posteriori/solicitante"
+    },
+    {
+      "id": "117",
+      "departmento": "se",
+      "tipoTramite": "110214",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validar-inicialmente-certificado/solicitante"
+    },
+    {
+      "id": "46",
+      "departmento": "se",
+      "tipoTramite": "110216",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/inicialmente-certificado-origen/solicitante"
+    },
+    {
+      "id": "47",
+      "departmento": "se",
+      "tipoTramite": "110217",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado-origen/solicitante"
+    },
+    {
+      "id": "48",
+      "departmento": "se",
+      "tipoTramite": "110218",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado-tecnico-japon/validar-certificado-tecnico-japon"
+    },
+    {
+      "id": "49",
+      "departmento": "se",
+      "tipoTramite": "110219",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado/solicitud"
+    },
+    {
+      "id": "50",
+      "departmento": "se",
+      "tipoTramite": "110221",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validador-certificado-cam"
+    },
+    {
+      "id": "324",
+      "departmento": "se",
+      "tipoTramite": "110222",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/validar-certificado-inicialmente/certificado"
+    },
+    {
+      "id": "118",
+      "departmento": "se",
+      "tipoTramite": "110223",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/certificado-alianza-posteriori"
+    },
+    {
+      "id": "119",
+      "departmento": "se",
+      "tipoTramite": "120101",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitud-de-registro-tpl/pantallas"
+    },
+    {
+      "id": "51",
+      "departmento": "se",
+      "tipoTramite": "120201",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/cupos/persona-fisica"
+    },
+    {
+      "id": "120",
+      "departmento": "se",
+      "tipoTramite": "120202",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/expedicion-certificado-asignacion/persona-moral"
+    },
+    {
+      "id": "121",
+      "departmento": "se",
+      "tipoTramite": "120203",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/expedicion-certificados-ptpd/solicitante"
+    },
+    {
+      "id": "170",
+      "departmento": "se",
+      "tipoTramite": "120204",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/expedicion-certificado-cupos/solicitud-expedicion"
+    },
+    {
+      "id": "52",
+      "departmento": "se",
+      "tipoTramite": "120301",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/elegibilidad-de-textiles/elegibilidad-textiles"
+    },
+    {
+      "id": "316",
+      "departmento": "se",
+      "tipoTramite": "120401",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/asignacion-directa-cupo-personas-fisicas/solicitante"
+    },
+    {
+      "id": "53",
+      "departmento": "se",
+      "tipoTramite": "120402",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/asignacion-directa-de-cupo/solicitante"
+    },
+    {
+      "id": "603",
+      "departmento": "se",
+      "tipoTramite": "120403",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/cupos/solicitud"
+    },
+    {
+      "id": "54",
+      "departmento": "se",
+      "tipoTramite": "120404",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/entidad-legal/soliciante"
+    },
+    {
+      "id": "55",
+      "departmento": "se",
+      "tipoTramite": "120501",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitartransferencia/cupos-solicitud-transferencia"
+    },
+    {
+      "id": "56",
+      "departmento": "se",
+      "tipoTramite": "120601",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-como-empresa/datos"
+    },
+    {
+      "id": "57",
+      "departmento": "se",
+      "tipoTramite": "120602",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/empresa-frontera/datos-empresa"
+    },
+    {
+      "id": "601",
+      "departmento": "se",
+      "tipoTramite": "120603",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-como-expresa/registro-empresa"
+    },
+    {
+      "id": "296",
+      "departmento": "se",
+      "tipoTramite": "120702",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/expedicion-certificados-frontera/solicitante"
+    },
+    {
+      "id": "58",
+      "departmento": "se",
+      "tipoTramite": "130102",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/octava-temporal/solicitante"
+    },
+    {
+      "id": "171",
+      "departmento": "se",
+      "tipoTramite": "130103",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-definitiva/pantallas"
+    },
+    {
+      "id": "247",
+      "departmento": "se",
+      "tipoTramite": "130104",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-otros-vehiculos-usados/solicitud"
+    },
+    {
+      "id": "248",
+      "departmento": "se",
+      "tipoTramite": "130105",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-vehiculos-usados-donacion/solicitud"
+    },
+    {
+      "id": "59",
+      "departmento": "se",
+      "tipoTramite": "130106",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/desmantelar/solicitante"
+    },
+    {
+      "id": "126",
+      "departmento": "se",
+      "tipoTramite": "130109",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-de/vehiculos-usados-adaptados"
+    },
+    {
+      "id": "127",
+      "departmento": "se",
+      "tipoTramite": "130110",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion/neumaticos-comercializar"
+    },
+    {
+      "id": "60",
+      "departmento": "se",
+      "tipoTramite": "130111",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-de-vehiculos-usados/importacion-de-vehiculos"
+    },
+    {
+      "id": "159",
+      "departmento": "se",
+      "tipoTramite": "130112",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-material-de-investigacion-cientifica"
+    },
+    {
+      "id": "249",
+      "departmento": "se",
+      "tipoTramite": "130113",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion/equipo-anticontaminante"
+    },
+    {
+      "id": "160",
+      "departmento": "se",
+      "tipoTramite": "130114",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/diamante-bruto/diamante"
+    },
+    {
+      "id": "161",
+      "departmento": "se",
+      "tipoTramite": "130115",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/importacion-vehiculos-nuevos/solicitud"
+    },
+    {
+      "id": "250",
+      "departmento": "se",
+      "tipoTramite": "130116",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitud-importacion-ambulancia/reconstruccion-reacondicionamiento"
+    },
+    {
+      "id": "61",
+      "departmento": "se",
+      "tipoTramite": "130118",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/pexim/solicitud"
+    },
+    {
+      "id": "62",
+      "departmento": "se",
+      "tipoTramite": "130119",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/aviso-importacion-maquinas/registrar-solicitud"
+    },
+    {
+      "id": "63",
+      "departmento": "se",
+      "tipoTramite": "130120",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/permiso-importacion/intro-permiso"
+    },
+    {
+      "id": "64",
+      "departmento": "se",
+      "tipoTramite": "130202",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/exportacion-minerales/exportacion-mineralesde-hierro"
+    },
+    {
+      "id": "162",
+      "departmento": "se",
+      "tipoTramite": "130203",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/exportar-diamantes/exportacion-de-diamantes-en-bruto"
+    },
+    {
+      "id": "163",
+      "departmento": "se",
+      "tipoTramite": "130217",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/previos-exportacion/control-permisos-previos-exportacion"
+    },
+    {
+      "id": "183",
+      "departmento": "se",
+      "tipoTramite": "130301",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitud-prorroga/invocar"
+    },
+    {
+      "id": "251",
+      "departmento": "se",
+      "tipoTramite": "130401",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/modificacion-descripcion/invocar-modulo"
+    },
+    {
+      "id": "184",
+      "departmento": "se",
+      "tipoTramite": "140101",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/solicitud-de-cancelacion/solicitante"
+    },
+    {
+      "id": "318",
+      "departmento": "se",
+      "tipoTramite": "140102",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitudModule/pantallas"
+    },
+    {
+      "id": "65",
+      "departmento": "se",
+      "tipoTramite": "140103",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/cancelacion-de/solicitante"
+    },
+    {
+      "id": "66",
+      "departmento": "se",
+      "tipoTramite": "140105",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/desistimiento-de-permiso/solicitante"
+    },
+    {
+      "id": "67",
+      "departmento": "se",
+      "tipoTramite": "140201",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/cancelaciones-ministerio/solicitud"
+    },
+    {
+      "id": "605",
+      "departmento": "se",
+      "tipoTramite": "140205",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/cancelaciones-certificado/solicitud"
+    },
+    {
+      "id": "68",
+      "departmento": "se",
+      "tipoTramite": "150101",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/registro-solicitud-anual/solicitud"
+    },
+    {
+      "id": "69",
+      "departmento": "se",
+      "tipoTramite": "150102",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/reporte-anual/solicitud"
+    },
+    {
+      "id": "122",
+      "departmento": "se",
+      "tipoTramite": "150103",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/informe-anual-programa/solicitud-de-reporte"
+    },
+    {
+      "id": "606",
+      "departmento": "se",
+      "tipoTramite": "190401",
+      "URL": "https://wwwdev.ventanillaunica.gob.mx/se/doc-equivalente/iniciar"
+    }
+  ]
