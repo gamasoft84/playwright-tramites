@@ -1,9 +1,621 @@
 [
   {
+    "id": "620",
+    "departmento": "manifestacionvalor",
+    "tipoTramite": "0",
+    "url": "/manifestacionvalor/consulta-manifestacion"
+  },
+  {
+    "id": "621",
+    "departmento": "manifestacionvalor",
+    "tipoTramite": "0",
+    "url": "/manifestacionvalor/edicion-manifestacion"
+  },
+  {
+    "id": "622",
+    "departmento": "manifestacionvalor",
+    "tipoTramite": "0",
+    "url": "/manifestacionvalor/manifestacion-valor"
+  },
+  {
+    "id": "604",
+    "departmento": "aga",
+    "tipoTramite": "103",
+    "url": "/aga/autorizacion/mercancia-donada"
+  },
+  {
+    "id": "1",
+    "departmento": "aga",
+    "tipoTramite": "104",
+    "url": "/aga/deposito-fiscal/solicitud"
+  },
+  {
+    "id": "172",
+    "departmento": "aga",
+    "tipoTramite": "105",
+    "url": "/aga/invocar-modulo/solicitante"
+  },
+  {
+    "id": "186",
+    "departmento": "aga",
+    "tipoTramite": "202",
+    "url": "/aga/prestadores-servicio/maniobras-mercancias"
+  },
+  {
+    "id": "2",
+    "departmento": "aga",
+    "tipoTramite": "301",
+    "url": "/aga/importante/datosdelasolicitud"
+  },
+  {
+    "id": "128",
+    "departmento": "aga",
+    "tipoTramite": "302",
+    "url": "/aga/certi-registro/proceso-completo"
+  },
+  {
+    "id": "3",
+    "departmento": "agace",
+    "tipoTramite": "303",
+    "url": "/aga/despacho-mercancias/registro/registro"
+  },
+  {
+    "id": "303",
+    "departmento": "aga",
+    "tipoTramite": "303",
+    "url": "/aga/despacho-mercancias/registro/registro"
+  },
+  {
+    "id": "174",
+    "departmento": "agace",
+    "tipoTramite": "317",
+    "url": "/agace/aviso-unico-renovacion/pantallas"
+  },
+  {
+    "id": "312",
+    "departmento": "aga",
+    "tipoTramite": "319",
+    "url": "/aga/operaciones-de-comercio/exterior"
+  },
+  {
+    "id": "332",
+    "departmento": "aga",
+    "tipoTramite": "324",
+    "url": "/aga/tecnologicos/solicitud"
+  },
+  {
+    "id": "4",
+    "departmento": "aga",
+    "tipoTramite": "701",
+    "url": "/aga/registro-digitalizar-documentos/solicitud"
+  },
+  {
+    "id": "280",
+    "departmento": "aga",
+    "tipoTramite": "5601",
+    "url": "/aga/solicitud-despacho-exportacion/solicitud"
+  },
+  {
+    "id": "5",
+    "departmento": "aga",
+    "tipoTramite": "5701",
+    "url": "/aga/servicios-extraordinarios/solicitud"
+  },
+  {
+    "id": "6",
+    "departmento": "aga",
+    "tipoTramite": "5701",
+    "url": "/aga/atender-requerimientos"
+  },
+  {
+    "id": "7",
+    "departmento": "aga",
+    "tipoTramite": "5701",
+    "url": "/aga/notificacion"
+  },
+  {
+    "id": "8",
+    "departmento": "aga",
+    "tipoTramite": "6001",
+    "url": "/aga/registro-cuentas-bancarias/todospasos"
+  },
+  {
+    "id": "187",
+    "departmento": "aga",
+    "tipoTramite": "6101",
+    "url": "/aga/junta-tecnica/solicitud"
+  },
+  {
+    "id": "299",
+    "departmento": "aga",
+    "tipoTramite": "6102",
+    "url": "/aga/junta-tecnica-registro/registro-tecnica"
+  },
+  {
+    "id": "303",
+    "departmento": "aga",
+    "tipoTramite": "6203",
+    "url": "/aga/desistimiento-animales/solicitante"
+  },
+  {
+    "id": "300",
+    "departmento": "aga",
+    "tipoTramite": "6402",
+    "url": "/aga/autorizacion-importacion/solicitante"
+  },
+  {
+    "id": "301",
+    "departmento": "aga",
+    "tipoTramite": "6403",
+    "url": "/aga/retorno-de-partes/solicitante"
+  },
+  {
+    "id": "302",
+    "departmento": "aga",
+    "tipoTramite": "6502",
+    "url": "/aga/registro-poblacional/solicitud"
+  },
+  {
+    "id": "9",
+    "departmento": "aga",
+    "tipoTramite": "10301",
+    "url": "/aga/importador-exportador/solicitud"
+  },
+  {
+    "id": "129",
+    "departmento": "aga",
+    "tipoTramite": "10302",
+    "url": "/aga/exencion-impuestos/solicitud"
+  },
+  {
+    "id": "10",
+    "departmento": "aga",
+    "tipoTramite": "10303",
+    "url": "/aga/donaciones-extranjeras/solicitud"
+  },
+  {
+    "id": "370",
+    "departmento": "aga",
+    "tipoTramite": "10703",
+    "url": "/aga/importador-exportador/modification-exencion-impuestos"
+  },
+  {
+    "id": "303",
+    "departmento": "aga",
+    "tipoTramite": "11101",
+    "url": "/aga/fronteriza/aviso-mercancia-donada"
+  },
+  {
+    "id": "188",
+    "departmento": "aga",
+    "tipoTramite": "11102",
+    "url": "/aga/modificacion-donaciones-immex/solicitante"
+  },
+  {
+    "id": "11",
+    "departmento": "aga",
+    "tipoTramite": "11105",
+    "url": "/aga/retirada-de-la-autorizacion-de-donaciones/solicitud"
+  },
+  {
+    "id": "189",
+    "departmento": "aga",
+    "tipoTramite": "11106",
+    "url": "/aga/cancelacion-donaciones/solicitante"
+  },
+  {
+    "id": "12",
+    "departmento": "aga",
+    "tipoTramite": "11201",
+    "url": "/aga/temporal-contenedores/solicitante"
+  },
+  {
+    "id": "13",
+    "departmento": "aga",
+    "tipoTramite": "11202",
+    "url": "/aga/retorno-contenedores/solicitante"
+  },
+  {
+    "id": "14",
+    "departmento": "aga",
+    "tipoTramite": "11204",
+    "url": "/aga/transferencia-contenedores/solicitante"
+  },
+  {
+    "id": "190",
+    "departmento": "aga",
+    "tipoTramite": "30401",
+    "url": "/aga/registro-empresas/transporte"
+  },
+  {
+    "id": "191",
+    "departmento": "agace",
+    "tipoTramite": "30505",
+    "url": "/agace/aviso-de-modificacion/aviso"
+  },
+  {
+    "id": "606",
+    "departmento": "agace",
+    "tipoTramite": "30506",
+    "url": "/agace/registros/solicitud"
+  },
+  {
+    "id": "15",
+    "departmento": "aga",
+    "tipoTramite": "30901",
+    "url": "/aga/muestras-mercancias/renovaciones"
+  },
+  {
+    "id": "198",
+    "departmento": "agace",
+    "tipoTramite": "31101",
+    "url": "/agace/garantia/solicitud"
+  },
+  {
+    "id": "173",
+    "departmento": "aga",
+    "tipoTramite": "31201",
+    "url": "/aga/renovacion-iva-ieps/mod-a"
+  },
+  {
+    "id": "192",
+    "departmento": "aga",
+    "tipoTramite": "31202",
+    "url": "/aga/renovacion-iva-ieps/mod-aa"
+  },
+  {
+    "id": "193",
+    "departmento": "aga",
+    "tipoTramite": "31203",
+    "url": "/aga/renovacion-iva-ieps/mod-aaa"
+  },
+  {
+    "id": "199",
+    "departmento": "agace",
+    "tipoTramite": "31301",
+    "url": "/agace/endoso-garantia/solicitud"
+  },
+  {
+    "id": "304",
+    "departmento": "agace",
+    "tipoTramite": "31401",
+    "url": "/agace/cancelacion-garantia/pantallas"
+  },
+  {
+    "id": "135",
+    "departmento": "agace",
+    "tipoTramite": "31501",
+    "url": "/agace/autoridad/solicitud"
+  },
+  {
+    "id": "16",
+    "departmento": "agace",
+    "tipoTramite": "31601",
+    "url": "/agace/antecesor/datosdelasolicitud"
+  },
+  {
+    "id": "200",
+    "departmento": "agace",
+    "tipoTramite": "31602",
+    "url": "/agace/registros-de-comercio-exterior/registrar-solicitud"
+  },
+  {
+    "id": "201",
+    "departmento": "agace",
+    "tipoTramite": "31603",
+    "url": "/agace/registros-de-comercio-exterior/registrar-solicitud31603"
+  },
+  {
+    "id": "204",
+    "departmento": "agace",
+    "tipoTramite": "31616",
+    "url": "/agace/solicitud-de-registro-invocar/solicitud"
+  },
+  {
+    "id": "283",
+    "departmento": "agace",
+    "tipoTramite": "31801",
+    "url": "/agace/renovacion-comercializadora/renovacion"
+  },
+  {
+    "id": "137",
+    "departmento": "agace",
+    "tipoTramite": "31802",
+    "url": "/agace/registro-solicitud/solicitud"
+  },
+  {
+    "id": "17",
+    "departmento": "agace",
+    "tipoTramite": "31803",
+    "url": "/agace/registro/solicitud"
+  },
+  {
+    "id": "205",
+    "departmento": "agace",
+    "tipoTramite": "32101",
+    "url": "/agace/consulta-aviso-acreditacion/solicitud"
+  },
+  {
+    "id": "206",
+    "departmento": "agace",
+    "tipoTramite": "32102",
+    "url": "/agace/aviso-de-ampliacion/solicitud"
+  },
+  {
+    "id": "207",
+    "departmento": "agace",
+    "tipoTramite": "32201",
+    "url": "/agace/anexo-veintiocho/solicitud"
+  },
+  {
+    "id": "113",
+    "departmento": "agace",
+    "tipoTramite": "32301",
+    "url": "/agace/aviso/aviso-modificacion"
+  },
+  {
+    "id": "138",
+    "departmento": "agace",
+    "tipoTramite": "32401",
+    "url": "/agace/manifiesto-aereo/solicitar-requiremento"
+  },
+  {
+    "id": "18",
+    "departmento": "agace",
+    "tipoTramite": "32501",
+    "url": "/agace/mercancias-desmontadas-o-sin-montar/solicitud"
+  },
+  {
+    "id": "19",
+    "departmento": "agace",
+    "tipoTramite": "32502",
+    "url": "/agace/aviso/solicitud"
+  },
+  {
+    "id": "139",
+    "departmento": "agace",
+    "tipoTramite": "32503",
+    "url": "/agace/aviso-traslado/solicitante"
+  },
+  {
+    "id": "20",
+    "departmento": "agace",
+    "tipoTramite": "32504",
+    "url": "/agace/aviso-procesos/solicitud"
+  },
+  {
+    "id": "140",
+    "departmento": "agace",
+    "tipoTramite": "32505",
+    "url": "/agace/aviso-procesos-solicitante"
+  },
+  {
+    "id": "141",
+    "departmento": "agace",
+    "tipoTramite": "32506",
+    "url": "/agace/aviso-destruccion/solicitante"
+  },
+  {
+    "id": "142",
+    "departmento": "agace",
+    "tipoTramite": "32507",
+    "url": "/agace/entrega-acta-solicitante"
+  },
+  {
+    "id": "143",
+    "departmento": "agace",
+    "tipoTramite": "32508",
+    "url": "/agace/adace/solicitud"
+  },
+  {
+    "id": "441",
+    "departmento": "agace",
+    "tipoTramite": "32509",
+    "url": "/agace/aviso-mercancia/destruccion-o-donacion"
+  },
+  {
+    "id": "443",
+    "departmento": "agace",
+    "tipoTramite": "32511",
+    "url": "/agace/avisos-agace/aviso-de-merc-auto-deportivos"
+  },
+  {
+    "id": "444",
+    "departmento": "agace",
+    "tipoTramite": "32512",
+    "url": "/agace/aviso-destruccion-mercancias/solicitud"
+  },
+  {
+    "id": "445",
+    "departmento": "agace",
+    "tipoTramite": "32513",
+    "url": "/agace/aviso-tesoreria/solicitud"
+  },
+  {
+    "id": "446",
+    "departmento": "agace",
+    "tipoTramite": "32514",
+    "url": "/agace/retorno-seguro-vehiculos-extranjeros/solicitud"
+  },
+  {
+    "id": "447",
+    "departmento": "agace",
+    "tipoTramite": "32515",
+    "url": "/agace/aviso-opcion-seguro-global/solicitante"
+  },
+  {
+    "id": "448",
+    "departmento": "agace",
+    "tipoTramite": "32516",
+    "url": "/agace/acta-de-hechos/solicitud"
+  },
+  {
+    "id": "610",
+    "departmento": "agace",
+    "tipoTramite": "32604",
+    "url": "/agace/empresas-comercializadoras/solicitud"
+  },
+  {
+    "id": "136",
+    "departmento": "agace",
+    "tipoTramite": "32605",
+    "url": "/agace/importador-y-o-exportador/solicitud"
+  },
+  {
+    "id": "612",
+    "departmento": "agace",
+    "tipoTramite": "32606",
+    "url": "/agace/economico/solicitud"
+  },
+  {
+    "id": "609",
+    "departmento": "agace",
+    "tipoTramite": "32607",
+    "url": "/agace/aeronaves/solicitud"
+  },
+  {
+    "id": "614",
+    "departmento": "agace",
+    "tipoTramite": "32608",
+    "url": "/agace/seciit-oea-registration/solicitud"
+  },
+  {
+    "id": "32609",
+    "departmento": "agace",
+    "tipoTramite": "32609",
+    "url": "/agace/certificacion-empresas/operador-economico-autorizado-textil"
+  },
+  {
+    "id": "611",
+    "departmento": "agace",
+    "tipoTramite": "32610",
+    "url": "/agace/registro-oae-rfe/solicitud"
+  },
+  {
+    "id": "615",
+    "departmento": "agace",
+    "tipoTramite": "32611",
+    "url": "/agace/auto-transportista/solicitud"
+  },
+  {
+    "id": "609",
+    "departmento": "agace",
+    "tipoTramite": "32612",
+    "url": "/agace/esquema-de-certificacion/registro-solicitud32612"
+  },
+  {
+    "id": "610",
+    "departmento": "agace",
+    "tipoTramite": "32613",
+    "url": "/agace/rubro-transporte-ferroviario/pantallas"
+  },
+  {
+    "id": "606",
+    "departmento": "agace",
+    "tipoTramite": "32614",
+    "url": "/agace/importador-y-o-exportador2/solicitud"
+  },
+  {
+    "id": "613",
+    "departmento": "agace",
+    "tipoTramite": "32615",
+    "url": "/agace/recinto-fiscalizado/solicitud"
+  },
+  {
     "id": "606",
     "departmento": "se",
     "tipoTramite": "32616",
     "url": "/agace/solicitud-de-registro/solicitud"
+  },
+  {
+    "id": "32617",
+    "departmento": "agace",
+    "tipoTramite": "32617",
+    "url": "/agace/certificacion-empresas-modalidad/oea-tercerizacion-logistica"
+  },
+  {
+    "id": "613",
+    "departmento": "agace",
+    "tipoTramite": "32618",
+    "url": "/agace/sce-socio-almacenamiento/solicitud"
+  },
+  {
+    "id": "607",
+    "departmento": "agace",
+    "tipoTramite": "33302",
+    "url": "/agace/aviso-certificacion/aviso-certificacion"
+  },
+  {
+    "id": "608",
+    "departmento": "agace",
+    "tipoTramite": "33303",
+    "url": "/agace/aviso-modification-certificacion/pantallas"
+  },
+  {
+    "id": "616",
+    "departmento": "agace",
+    "tipoTramite": "33304",
+    "url": "/agace/aviso-comercializadora-modification-importadora/solicitud"
+  },
+  {
+    "id": "21",
+    "departmento": "aga",
+    "tipoTramite": "40101",
+    "url": "/aga/transportista-terrestre/solicitante"
+  },
+  {
+    "id": "22",
+    "departmento": "aga",
+    "tipoTramite": "40102",
+    "url": "/aga/transportista-renovacion/solicitante"
+  },
+  {
+    "id": "23",
+    "departmento": "aga",
+    "tipoTramite": "40103",
+    "url": "/aga/modificar-caat-terrestre/solicitante"
+  },
+  {
+    "id": "130",
+    "departmento": "aga",
+    "tipoTramite": "40201",
+    "url": "/aga/transportacion-maritima/asignar-caat-maritimo"
+  },
+  {
+    "id": "194",
+    "departmento": "aga",
+    "tipoTramite": "40202",
+    "url": "/aga/modificacion-transportacion-maritima/modificar-caat-maritimo"
+  },
+  {
+    "id": "131",
+    "departmento": "aga",
+    "tipoTramite": "40301",
+    "url": "/aga/registro-caat-naviero/solicitud"
+  },
+  {
+    "id": "24",
+    "departmento": "aga",
+    "tipoTramite": "40302",
+    "url": "/aga/registro-transportista/solicitante"
+  },
+  {
+    "id": "132",
+    "departmento": "aga",
+    "tipoTramite": "40401",
+    "url": "/aga/registro-del-codigo/solicitud"
+  },
+  {
+    "id": "133",
+    "departmento": "aga",
+    "tipoTramite": "40402",
+    "url": "/aga/codigo-transportista"
+  },
+  {
+    "id": "112",
+    "departmento": "aga",
+    "tipoTramite": "40403",
+    "url": "/aga/atencion-de-renovacion/solicitante"
   },
   {
     "id": "25",
@@ -420,6 +1032,18 @@
     "url": "/se/desmantelar/solicitante"
   },
   {
+    "id": "310",
+    "departmento": "se",
+    "tipoTramite": "130107",
+    "url": "/se/importaciones-agropecuarias/permisos-de-importacia"
+  },
+  {
+    "id": "166",
+    "departmento": "sener",
+    "tipoTramite": "130108",
+    "url": "/sener/producto-petrolifero/solicitud"
+  },
+  {
     "id": "126",
     "departmento": "se",
     "tipoTramite": "130109",
@@ -486,6 +1110,18 @@
     "url": "/se/permiso-importacion/intro-permiso"
   },
   {
+    "id": "167",
+    "departmento": "sener",
+    "tipoTramite": "130121",
+    "url": "/sener/permiso-de-hidrocarburos/datos"
+  },
+  {
+    "id": "276",
+    "departmento": "sener",
+    "tipoTramite": "130201",
+    "url": "/sener/exportacion-petroliferos/solicitud"
+  },
+  {
     "id": "64",
     "departmento": "se",
     "tipoTramite": "130202",
@@ -498,6 +1134,12 @@
     "url": "/se/exportar-diamantes/exportacion-de-diamantes-en-bruto"
   },
   {
+    "id": "277",
+    "departmento": "sener",
+    "tipoTramite": "130204",
+    "url": "/sener/exportacion-hidrocarburos/solicitud"
+  },
+  {
     "id": "163",
     "departmento": "se",
     "tipoTramite": "130217",
@@ -508,6 +1150,12 @@
     "departmento": "se",
     "tipoTramite": "130301",
     "url": "/se/solicitud-prorroga/invocar"
+  },
+  {
+    "id": "297",
+    "departmento": "sener",
+    "tipoTramite": "130302",
+    "url": "/sener/parmiso-importacion-petroleo/pantallas"
   },
   {
     "id": "251",
@@ -534,10 +1182,28 @@
     "url": "/se/cancelacion-de/solicitante"
   },
   {
+    "id": "106",
+    "departmento": "se",
+    "tipoTramite": "140104",
+    "url": "/se/cancelacion-de-certificados-de-cupo/solicitante"
+  },
+  {
     "id": "66",
     "departmento": "se",
     "tipoTramite": "140105",
     "url": "/se/desistimiento-de-permiso/solicitante"
+  },
+  {
+    "id": "168",
+    "departmento": "sener",
+    "tipoTramite": "140111",
+    "url": "/sener/renuncia-de-derechos-de-permisos/solicitante"
+  },
+  {
+    "id": "169",
+    "departmento": "sener",
+    "tipoTramite": "140112",
+    "url": "/sener/hidrocarburos-de-petroleo/permiso-de-retiro"
   },
   {
     "id": "67",
@@ -546,10 +1212,28 @@
     "url": "/se/cancelaciones-ministerio/solicitud"
   },
   {
+    "id": "623",
+    "departmento": "se",
+    "tipoTramite": "140201",
+    "url": "/se/atender-requerimientos"
+  },
+  {
     "id": "605",
     "departmento": "se",
     "tipoTramite": "140205",
     "url": "/se/cancelaciones-certificado/solicitud"
+  },
+  {
+    "id": "278",
+    "departmento": "sener",
+    "tipoTramite": "140216",
+    "url": "/sener/pexim/suspension-permiso"
+  },
+  {
+    "id": "298",
+    "departmento": "sener",
+    "tipoTramite": "140218",
+    "url": "/sener/renuncia-de-permiso/solicitud"
   },
   {
     "id": "68",
@@ -574,5 +1258,917 @@
     "departmento": "se",
     "tipoTramite": "190401",
     "url": "/se/doc-equivalente/iniciar"
+  },
+  {
+    "id": "70",
+    "departmento": "agricultura",
+    "tipoTramite": "220102",
+    "url": "/agricultura/peticion-requisitos-fitosanitarios/invocar-modulo"
+  },
+  {
+    "id": "450",
+    "departmento": "agricultura",
+    "tipoTramite": "220103",
+    "url": "/agricultura/sanidad-acuicola-importacion/solicitud"
+  },
+  {
+    "id": "71",
+    "departmento": "agricultura",
+    "tipoTramite": "220201",
+    "url": "/agricultura/certificado-zoosanitario/registrozoosanitario"
+  },
+  {
+    "id": "72",
+    "departmento": "agricultura",
+    "tipoTramite": "220202",
+    "url": "/agricultura/certificado-fitosanitario/registrofitosanitario"
+  },
+  {
+    "id": "73",
+    "departmento": "agricultura",
+    "tipoTramite": "220203",
+    "url": "/agricultura/importacion-acuacultura/sanidad"
+  },
+  {
+    "id": "74",
+    "departmento": "agricultura",
+    "tipoTramite": "220401",
+    "url": "/agricultura/pantallas-extraordinarios"
+  },
+  {
+    "id": "75",
+    "departmento": "agricultura",
+    "tipoTramite": "220402",
+    "url": "/agricultura/pantallas-captura/solicitud"
+  },
+  {
+    "id": "144",
+    "departmento": "agricultura",
+    "tipoTramite": "220403",
+    "url": "/agricultura/certificado-exportacion/acuicola"
+  },
+  {
+    "id": "76",
+    "departmento": "agricultura",
+    "tipoTramite": "220404",
+    "url": "/agricultura/desistimiento/desistimiento-page"
+  },
+  {
+    "id": "77",
+    "departmento": "agricultura",
+    "tipoTramite": "220501",
+    "url": "/agricultura/sagarpa/datosdelasolicitud"
+  },
+  {
+    "id": "78",
+    "departmento": "agricultura",
+    "tipoTramite": "220502",
+    "url": "/agricultura/inspeccion-fisica/pantallas"
+  },
+  {
+    "id": "124",
+    "departmento": "agricultura",
+    "tipoTramite": "220503",
+    "url": "/agricultura/sanidadacuicola/certificado"
+  },
+  {
+    "id": "79",
+    "departmento": "agricultura",
+    "tipoTramite": "220701",
+    "url": "/agricultura/inspeccion-fisica/inspeccion-fisica-zoosanitario"
+  },
+  {
+    "id": "80",
+    "departmento": "agricultura",
+    "tipoTramite": "220702",
+    "url": "/agricultura/inspeccion-fitosanitario/fitosanitario"
+  },
+  {
+    "id": "81",
+    "departmento": "agricultura",
+    "tipoTramite": "220703",
+    "url": "/agricultura/acuicola-fisica/acuicola"
+  },
+  {
+    "id": "125",
+    "departmento": "agricultura",
+    "tipoTramite": "221601",
+    "url": "/agricultura/zoosanitario/solicitante"
+  },
+  {
+    "id": "175",
+    "departmento": "agricultura",
+    "tipoTramite": "221602",
+    "url": "/agricultura/fitosanitario/solicitante"
+  },
+  {
+    "id": "208",
+    "departmento": "agricultura",
+    "tipoTramite": "221603",
+    "url": "/agricultura/sanidad/solicitante"
+  },
+  {
+    "id": "82",
+    "departmento": "semarnat",
+    "tipoTramite": "230101",
+    "url": "/semarnat/tramites-disponibles/solicitud"
+  },
+  {
+    "id": "272",
+    "departmento": "semarnat",
+    "tipoTramite": "230201",
+    "url": "/semarnat/phytosanitary-export/solicitud"
+  },
+  {
+    "id": "273",
+    "departmento": "semarnat",
+    "tipoTramite": "230202",
+    "url": "/semarnat/phytosanitary-rexportation/solicitud"
+  },
+  {
+    "id": "274",
+    "departmento": "semarnat",
+    "tipoTramite": "230301",
+    "url": "/semarnat/desistimiento/solicitud"
+  },
+  {
+    "id": "83",
+    "departmento": "semarnat",
+    "tipoTramite": "230401",
+    "url": "/semarnat/pantallas/action"
+  },
+  {
+    "id": "275",
+    "departmento": "semarnat",
+    "tipoTramite": "230501",
+    "url": "/semarnat/materiales-peligrosos/solicitud"
+  },
+  {
+    "id": "164",
+    "departmento": "semarnat",
+    "tipoTramite": "230901",
+    "url": "/semarnat/autorizaciones-de-vida-silvestre/datos"
+  },
+  {
+    "id": "165",
+    "departmento": "semarnat",
+    "tipoTramite": "230902",
+    "url": "/semarnat/tramites-cites-importacion-exportacion-reexportacion/datos"
+  },
+  {
+    "id": "84",
+    "departmento": "semarnat",
+    "tipoTramite": "231001",
+    "url": "/semarnat/aviso-de-materiales/datos"
+  },
+  {
+    "id": "602",
+    "departmento": "semarnat",
+    "tipoTramite": "231002",
+    "url": "/semarnat/aviso-retorno/primera-subsecuente"
+  },
+  {
+    "id": "185",
+    "departmento": "semarnat",
+    "tipoTramite": "231003",
+    "url": "/semarnat/aviso-de-reciclaje/datos"
+  },
+  {
+    "id": "252",
+    "departmento": "sedena",
+    "tipoTramite": "240101",
+    "url": "/sedena/permiso-ordinario-importacion-armas-municiones/contenedor-de-pasos"
+  },
+  {
+    "id": "253",
+    "departmento": "sedena",
+    "tipoTramite": "240102",
+    "url": "/sedena/permiso-extraordinario-importacion-armamento-fisicas-morales/contenedor-de-pasos"
+  },
+  {
+    "id": "254",
+    "departmento": "sedena",
+    "tipoTramite": "240105",
+    "url": "/sedena/importacion-de-sustancias/ordinario-para"
+  },
+  {
+    "id": "255",
+    "departmento": "sedena",
+    "tipoTramite": "240106",
+    "url": "/sedena/aviso-importacion-sustancias-quimicas/contenedor-de-pasos"
+  },
+  {
+    "id": "256",
+    "departmento": "sedena",
+    "tipoTramite": "240107",
+    "url": "/sedena/sustancias-quimicas/solicitud"
+  },
+  {
+    "id": "257",
+    "departmento": "sedena",
+    "tipoTramite": "240108",
+    "url": "/sedena/permiso-ordinario-importacion-material/contenedor-de-pasos"
+  },
+  {
+    "id": "258",
+    "departmento": "sedena",
+    "tipoTramite": "240111",
+    "url": "/sedena/importacion-de-material-explosivo/ordinario-para"
+  },
+  {
+    "id": "541",
+    "departmento": "sedena",
+    "tipoTramite": "240112",
+    "url": "/sedena/agregar/destinatario"
+  },
+  {
+    "id": "259",
+    "departmento": "sedena",
+    "tipoTramite": "240114",
+    "url": "/sedena/armas-municiones-para-la-gente/contenedor-de-pasos"
+  },
+  {
+    "id": "260",
+    "departmento": "sedena",
+    "tipoTramite": "240117",
+    "url": "/sedena/permiso-ordinario-exportacion-de-sustancias-quimicas/contenedor-de-pasos"
+  },
+  {
+    "id": "261",
+    "departmento": "sedena",
+    "tipoTramite": "240118",
+    "url": "/sedena/permiso-extraordinario-para-la-exportacion-de-sustancias-quimicas/contenedor-de-pasos"
+  },
+  {
+    "id": "262",
+    "departmento": "sedena",
+    "tipoTramite": "240119",
+    "url": "/sedena/artefactos-pirotecnicos-ordinarios/contenedor-de-pasos"
+  },
+  {
+    "id": "263",
+    "departmento": "sedena",
+    "tipoTramite": "240120",
+    "url": "/sedena/permiso-exportacion-pirotecnia/contenedor-de-pasos"
+  },
+  {
+    "id": "264",
+    "departmento": "sedena",
+    "tipoTramite": "240121",
+    "url": "/sedena/permiso-ordinario-exportacion-explosivo/permiso-exportacion-explosivo"
+  },
+  {
+    "id": "265",
+    "departmento": "sedena",
+    "tipoTramite": "240122",
+    "url": "/sedena/permiso-extraordinario-exportacion-explosivo/contenedor-de-pasos"
+  },
+  {
+    "id": "311",
+    "departmento": "sedena",
+    "tipoTramite": "240123",
+    "url": "/sedena/aviso-de-exportacion/contenedor-de-pasos"
+  },
+  {
+    "id": "266",
+    "departmento": "sedena",
+    "tipoTramite": "240305",
+    "url": "/sedena/permiso-ordinario-importacion-substancias-quimicas/permiso-ordinario-importacion"
+  },
+  {
+    "id": "267",
+    "departmento": "sedena",
+    "tipoTramite": "240308",
+    "url": "/sedena/permiso-ordinario/importacion-de-artificios"
+  },
+  {
+    "id": "268",
+    "departmento": "sedena",
+    "tipoTramite": "240311",
+    "url": "/sedena/permiso-ordinario/importacion-artificios"
+  },
+  {
+    "id": "560",
+    "departmento": "sedena",
+    "tipoTramite": "240321",
+    "url": "/sedena/modificacion-exportacion/contenedor-de-pasos"
+  },
+  {
+    "id": "269",
+    "departmento": "sedena",
+    "tipoTramite": "240405",
+    "url": "/sedena/permiso-ordinario-importacion-sustancias-quimicas/contenedor-de-pasos"
+  },
+  {
+    "id": "270",
+    "departmento": "sedena",
+    "tipoTramite": "240407",
+    "url": "/sedena/solicitud-prorroga-aviso-importacion/importacion-de-sustancias-quimicas"
+  },
+  {
+    "id": "271",
+    "departmento": "sedena",
+    "tipoTramite": "240411",
+    "url": "/sedena/permiso-ordinario-prorroga-importacion-material-explosivo/contenedor-de-pasos"
+  },
+  {
+    "id": "244",
+    "departmento": "profepa",
+    "tipoTramite": "250101",
+    "url": "/profepa/flora-fauna/solictud"
+  },
+  {
+    "id": "491",
+    "departmento": "profepa",
+    "tipoTramite": "250102",
+    "url": "/profepa/flora-fauna-silvestre/solictud/"
+  },
+  {
+    "id": "492",
+    "departmento": "profepa",
+    "tipoTramite": "250103",
+    "url": "/profepa/embalaje-de-madera/solictud"
+  },
+  {
+    "id": "85",
+    "departmento": "cofepris",
+    "tipoTramite": "260101",
+    "url": "/cofepris/importacion-productos/contenedor-de-pasos"
+  },
+  {
+    "id": "145",
+    "departmento": "cofepris",
+    "tipoTramite": "260102",
+    "url": "/cofepris/consumo-personal/solicitud"
+  },
+  {
+    "id": "209",
+    "departmento": "cofepris",
+    "tipoTramite": "260103",
+    "url": "/cofepris/importacion-retorno-sanitario/contenedor-de-pasos"
+  },
+  {
+    "id": "317",
+    "departmento": "cofepris",
+    "tipoTramite": "260104",
+    "url": "/cofepris/permiso-sanitario-productos/solicitud"
+  },
+  {
+    "id": "210",
+    "departmento": "cofepris",
+    "tipoTramite": "260201",
+    "url": "/cofepris/importacion-psicotropicos-poretorno/contenedor-de-pasos"
+  },
+  {
+    "id": "599",
+    "departmento": "cofepris",
+    "tipoTramite": "260202",
+    "url": "/cofepris/importacion-materias-primas"
+  },
+  {
+    "id": "86",
+    "departmento": "cofepris",
+    "tipoTramite": "260203",
+    "url": "/cofepris/medicamentos-registro-sanitario/solicitud"
+  },
+  {
+    "id": "107",
+    "departmento": "cofepris",
+    "tipoTramite": "260204",
+    "url": "/cofepris/permiso-sanitario-importacion-medicamentos/solicitud"
+  },
+  {
+    "id": "87",
+    "departmento": "cofepris",
+    "tipoTramite": "260205",
+    "url": "/cofepris/materias-primas-destinados/solicitud"
+  },
+  {
+    "id": "146",
+    "departmento": "cofepris",
+    "tipoTramite": "260206",
+    "url": "/cofepris/maquila-materias-primas/solicitud"
+  },
+  {
+    "id": "211",
+    "departmento": "cofepris",
+    "tipoTramite": "260207",
+    "url": "/cofepris/importacion-tratamientos-especiales/contenedor-de-pasos"
+  },
+  {
+    "id": "212",
+    "departmento": "cofepris",
+    "tipoTramite": "260208",
+    "url": "/cofepris/medicamentos-destinados-uso/contenedor-de-pasos"
+  },
+  {
+    "id": "213",
+    "departmento": "cofepris",
+    "tipoTramite": "260209",
+    "url": "/cofepris/importacion-destinados-donacio/contenedor-de-pasos"
+  },
+  {
+    "id": "108",
+    "departmento": "cofepris",
+    "tipoTramite": "260210",
+    "url": "/cofepris/permiso-sanitario-importacion-medicamentos-pruebas"
+  },
+  {
+    "id": "88",
+    "departmento": "cofepris",
+    "tipoTramite": "260211",
+    "url": "/cofepris/permiso-sanitario/pantallas"
+  },
+  {
+    "id": "89",
+    "departmento": "cofepris",
+    "tipoTramite": "260212",
+    "url": "/cofepris/permiso-maquila/solictud"
+  },
+  {
+    "id": "147",
+    "departmento": "cofepris",
+    "tipoTramite": "260213",
+    "url": "/cofepris/permiso-sanitario-medicos-uso-personal/contenedor-de-pasos"
+  },
+  {
+    "id": "90",
+    "departmento": "cofepris",
+    "tipoTramite": "260214",
+    "url": "/cofepris/importacion-dispositivos-medicos-uso/contenedor-de-pasos"
+  },
+  {
+    "id": "91",
+    "departmento": "cofepris",
+    "tipoTramite": "260215",
+    "url": "/cofepris/permiso-sanitario-importacion/sanitario"
+  },
+  {
+    "id": "92",
+    "departmento": "cofepris",
+    "tipoTramite": "260216",
+    "url": "/cofepris/importacion-dispositivos-medicos-donacion/contenedor-de-pasos"
+  },
+  {
+    "id": "148",
+    "departmento": "cofepris",
+    "tipoTramite": "260217",
+    "url": "/cofepris/dispositivos-medicos-sin-registrar/contenedor-de-pasos"
+  },
+  {
+    "id": "149",
+    "departmento": "cofepris",
+    "tipoTramite": "260218",
+    "url": "/cofepris/dispositivos-medicos-laboratorio/contenedor-de-pasos"
+  },
+  {
+    "id": "214",
+    "departmento": "cofepris",
+    "tipoTramite": "260219",
+    "url": "/cofepris/importacion-remedios-herbolarios/contenedor-de-pasos"
+  },
+  {
+    "id": "150",
+    "departmento": "cofepris",
+    "tipoTramite": "260301",
+    "url": "/cofepris/importacion-materias-primas-estupefacientes/contenedor-de-pasos"
+  },
+  {
+    "id": "215",
+    "departmento": "cofepris",
+    "tipoTramite": "260302",
+    "url": "/cofepris/exportacion-materias-primas-estupefacientes/contenedor-de-pasos"
+  },
+  {
+    "id": "151",
+    "departmento": "cofepris",
+    "tipoTramite": "260303",
+    "url": "/cofepris/importacion-psicotropicos/registrarIPM"
+  },
+  {
+    "id": "216",
+    "departmento": "cofepris",
+    "tipoTramite": "260304",
+    "url": "/cofepris/exportacion-medicamentos-contengan/contenedor-de-pasos"
+  },
+  {
+    "id": "93",
+    "departmento": "cofepris",
+    "tipoTramite": "260401",
+    "url": "/cofepris/territorio-nacional/solicitante"
+  },
+  {
+    "id": "94",
+    "departmento": "cofepris",
+    "tipoTramite": "260402",
+    "url": "/cofepris/permiso-importacion-biologica/solictud"
+  },
+  {
+    "id": "95",
+    "departmento": "cofepris",
+    "tipoTramite": "260501",
+    "url": "/cofepris/permiso-plaguicidas/plaguicidas"
+  },
+  {
+    "id": "96",
+    "departmento": "cofepris",
+    "tipoTramite": "260502",
+    "url": "/cofepris/muestras-plaguicidas/plaguicidas"
+  },
+  {
+    "id": "97",
+    "departmento": "cofepris",
+    "tipoTramite": "260503",
+    "url": "/cofepris/permiso-experimentales-plaguicidas/plaguicidas"
+  },
+  {
+    "id": "217",
+    "departmento": "cofepris",
+    "tipoTramite": "260504",
+    "url": "/cofepris/permiso-sujetos/plaguicidas"
+  },
+  {
+    "id": "218",
+    "departmento": "cofepris",
+    "tipoTramite": "260505",
+    "url": "/cofepris/permiso-transformacion-maquila/plaguicidas"
+  },
+  {
+    "id": "452",
+    "departmento": "cofepris",
+    "tipoTramite": "260507",
+    "url": "/cofepris/importacion-plafest/solicitud"
+  },
+  {
+    "id": "219",
+    "departmento": "cofepris",
+    "tipoTramite": "260508",
+    "url": "/cofepris/permiso-nutrientes/plaguicidas"
+  },
+  {
+    "id": "220",
+    "departmento": "cofepris",
+    "tipoTramite": "260509",
+    "url": "/cofepris/permiso-vegetales-nutrientes/plaguicidas"
+  },
+  {
+    "id": "221",
+    "departmento": "cofepris",
+    "tipoTramite": "260510",
+    "url": "/cofepris/permiso-pruebas-nutrientes/plaguicidas"
+  },
+  {
+    "id": "222",
+    "departmento": "cofepris",
+    "tipoTramite": "260511",
+    "url": "/cofepris/permiso-nutrientes-exportacion/plaguicidas"
+  },
+  {
+    "id": "152",
+    "departmento": "cofepris",
+    "tipoTramite": "260512",
+    "url": "/cofepris/permiso-de-importacion/pantallaspage"
+  },
+  {
+    "id": "223",
+    "departmento": "cofepris",
+    "tipoTramite": "260513",
+    "url": "/cofepris/muestras-de-toxicos/plaguicidas"
+  },
+  {
+    "id": "153",
+    "departmento": "cofepris",
+    "tipoTramite": "260514",
+    "url": "/cofepris/permiso-importacion-calidad/pantallas"
+  },
+  {
+    "id": "224",
+    "departmento": "cofepris",
+    "tipoTramite": "260515",
+    "url": "/cofepris/sustancias-permitidas"
+  },
+  {
+    "id": "225",
+    "departmento": "cofepris",
+    "tipoTramite": "260516",
+    "url": "/cofepris/operacion-de-maquila-submaquila/plaguicidas"
+  },
+  {
+    "id": "98",
+    "departmento": "cofepris",
+    "tipoTramite": "260601",
+    "url": "/cofepris/aviso-sanitario/datos-de-la-solicitud"
+  },
+  {
+    "id": "99",
+    "departmento": "cofepris",
+    "tipoTramite": "260603",
+    "url": "/cofepris/aviso-de-importacion/SolicitudePage"
+  },
+  {
+    "id": "100",
+    "departmento": "cofepris",
+    "tipoTramite": "260604",
+    "url": "/cofepris/aviso-exportacion/pantallas"
+  },
+  {
+    "id": "101",
+    "departmento": "cofepris",
+    "tipoTramite": "260605",
+    "url": "/cofepris/aviso-de-modificacion-module/datos-de-la-solicitud"
+  },
+  {
+    "id": "102",
+    "departmento": "cofepris",
+    "tipoTramite": "260701",
+    "url": "/cofepris/permiso-certificados/registrarSolicitudIP"
+  },
+  {
+    "id": "176",
+    "departmento": "cofepris",
+    "tipoTramite": "260702",
+    "url": "/cofepris/registrar-solicitud-mcp/registro"
+  },
+  {
+    "id": "226",
+    "departmento": "cofepris",
+    "tipoTramite": "260703",
+    "url": "/cofepris/solicitud-permiso/datos"
+  },
+  {
+    "id": "177",
+    "departmento": "cofepris",
+    "tipoTramite": "260704",
+    "url": "/cofepris/consulta/solicitud"
+  },
+  {
+    "id": "227",
+    "departmento": "cofepris",
+    "tipoTramite": "260901",
+    "url": "/cofepris/modificacion-permiso-sanitario-la-salud/solicitante"
+  },
+  {
+    "id": "154",
+    "departmento": "cofepris",
+    "tipoTramite": "260902",
+    "url": "/cofepris/modificacion-permiso-sanitario/solicitante"
+  },
+  {
+    "id": "155",
+    "departmento": "cofepris",
+    "tipoTramite": "260903",
+    "url": "/cofepris/actualizacion-importacion/solictud"
+  },
+  {
+    "id": "109",
+    "departmento": "cofepris",
+    "tipoTramite": "260904",
+    "url": "/cofepris/modificacion-del-permiso-sanitario-de-importacion-de-insumos/sanitary-permit"
+  },
+  {
+    "id": "228",
+    "departmento": "cofepris",
+    "tipoTramite": "260905",
+    "url": "/cofepris/enmienda-permiso-sanitario/solictud"
+  },
+  {
+    "id": "178",
+    "departmento": "cofepris",
+    "tipoTramite": "260906",
+    "url": "/cofepris/modificacion-permiso-sanitario-importacion-maquila"
+  },
+  {
+    "id": "229",
+    "departmento": "cofepris",
+    "tipoTramite": "260907",
+    "url": "/cofepris/modificacion-permiso-importacion-tratamientos/solicitante"
+  },
+  {
+    "id": "230",
+    "departmento": "cofepris",
+    "tipoTramite": "260908",
+    "url": "/cofepris/modificacion-permiso-meds-uso/solicitante"
+  },
+  {
+    "id": "231",
+    "departmento": "cofepris",
+    "tipoTramite": "260909",
+    "url": "/cofepris/medicamentos-donacion/solicitante"
+  },
+  {
+    "id": "179",
+    "departmento": "cofepris",
+    "tipoTramite": "260910",
+    "url": "/cofepris/modificacion-al-permiso-sanitario/solicitante"
+  },
+  {
+    "id": "110",
+    "departmento": "cofepris",
+    "tipoTramite": "260911",
+    "url": "/cofepris/modificacion-de-dispositivos/permiso-sanitario"
+  },
+  {
+    "id": "111",
+    "departmento": "cofepris",
+    "tipoTramite": "260912",
+    "url": "/cofepris/mod-permiso-importacion/permiso-sanitario"
+  },
+  {
+    "id": "232",
+    "departmento": "cofepris",
+    "tipoTramite": "260913",
+    "url": "/cofepris/modificacion-del-permiso/pantallas"
+  },
+  {
+    "id": "233",
+    "departmento": "cofepris",
+    "tipoTramite": "260914",
+    "url": "/cofepris/importacion-de-insumos/pantallas"
+  },
+  {
+    "id": "180",
+    "departmento": "cofepris",
+    "tipoTramite": "260915",
+    "url": "/cofepris/permiso-sanitario-dispositivos-medicos/permiso-sanitario-dispositivos-medicos"
+  },
+  {
+    "id": "234",
+    "departmento": "cofepris",
+    "tipoTramite": "260916",
+    "url": "/cofepris/importar-suministros-medicos/solictud"
+  },
+  {
+    "id": "235",
+    "departmento": "cofepris",
+    "tipoTramite": "260917",
+    "url": "/cofepris/permiso-importacion-module/modificacion-permiso"
+  },
+  {
+    "id": "181",
+    "departmento": "cofepris",
+    "tipoTramite": "260918",
+    "url": "/cofepris/modificacion-permiso-lab/modificacion-permiso-lab"
+  },
+  {
+    "id": "459",
+    "departmento": "cofepris",
+    "tipoTramite": "260919",
+    "url": "/cofepris/importar-de-remedios-herbals/permiso-remedios-herbals"
+  },
+  {
+    "id": "236",
+    "departmento": "cofepris",
+    "tipoTramite": "261101",
+    "url": "/cofepris/solicitud-modificacion"
+  },
+  {
+    "id": "237",
+    "departmento": "cofepris",
+    "tipoTramite": "261103",
+    "url": "/cofepris/modificacion-permiso-importacion-medicamentos/modificacion-permiso-importacion-medicamentos"
+  },
+  {
+    "id": "238",
+    "departmento": "cofepris",
+    "tipoTramite": "261401",
+    "url": "/cofepris/solicitud-modificacion-permiso-salida-territorio/solicitud"
+  },
+  {
+    "id": "239",
+    "departmento": "cofepris",
+    "tipoTramite": "261402",
+    "url": "/cofepris/solicitud-modificacion-permiso-internacion/solicitud"
+  },
+  {
+    "id": "182",
+    "departmento": "cofepris",
+    "tipoTramite": "261601",
+    "url": "/cofepris/correccion-interna-de-la-cofepris/correccion-interna-de-la-cofepris"
+  },
+  {
+    "id": "240",
+    "departmento": "cofepris",
+    "tipoTramite": "261701",
+    "url": "/cofepris/cancelacion-peticion/pantallas"
+  },
+  {
+    "id": "156",
+    "departmento": "cofepris",
+    "tipoTramite": "261702",
+    "url": "/cofepris/retiros-cofepris/pantallas"
+  },
+  {
+    "id": "242",
+    "departmento": "inbal",
+    "tipoTramite": "270101",
+    "url": "/inbal/informacion-arte-exportar/pantallas"
+  },
+  {
+    "id": "157",
+    "departmento": "inbal",
+    "tipoTramite": "270201",
+    "url": "/inbal/aviso-siglos/solicitud"
+  },
+  {
+    "id": "243",
+    "departmento": "inbal",
+    "tipoTramite": "270301",
+    "url": "/inbal/aviso-importacion-plastica/Pantallas"
+  },
+  {
+    "id": "241",
+    "departmento": "inah",
+    "tipoTramite": "280101",
+    "url": "/inah/permiso-de-exportacion/permiso"
+  },
+  {
+    "id": "103",
+    "departmento": "amecafe",
+    "tipoTramite": "290101",
+    "url": "/amecafe/cafe-exportadores/cafe-exportadores"
+  },
+  {
+    "id": "104",
+    "departmento": "amecafe",
+    "tipoTramite": "290201",
+    "url": "/amecafe/registrar-solicitud/solicitud"
+  },
+  {
+    "id": "284",
+    "departmento": "amecafe",
+    "tipoTramite": "290301",
+    "url": "/amecafe/nacional-registro-del-cafe-exportadores/cafeExportadores"
+  },
+  {
+    "id": "279",
+    "departmento": "sener",
+    "tipoTramite": "300105",
+    "url": "/sener/autorizacion-de-rayos-x/solicitud"
+  },
+  {
+    "id": "407",
+    "departmento": "aga",
+    "tipoTramite": "420101",
+    "url": "/aga/registrar-proveedores/solicitud"
+  },
+  {
+    "id": "313",
+    "departmento": "aga",
+    "tipoTramite": "420102",
+    "url": "/aga/concluir-relacion-de/solicitud"
+  },
+  {
+    "id": "282",
+    "departmento": "aga",
+    "tipoTramite": "420103",
+    "url": "/aga/concluir-relacion/solicitud"
+  },
+  {
+    "id": "105",
+    "departmento": "aga",
+    "tipoTramite": "570101",
+    "url": "/aga/cancelacion-servicios-extraordinarios/cancelacion-extraordinarios"
+  },
+  {
+    "id": "134",
+    "departmento": "aga",
+    "tipoTramite": "570102",
+    "url": "/aga/registro-solicitud/solicitud"
+  },
+  {
+    "id": "418",
+    "departmento": "aga",
+    "tipoTramite": "630103",
+    "url": "/aga/autorizacion-importacion-temporal/solicitud"
+  },
+  {
+    "id": "195",
+    "departmento": "aga",
+    "tipoTramite": "630104",
+    "url": "/aga/equipo-e-instrumentos-musicales/solicitud"
+  },
+  {
+    "id": "196",
+    "departmento": "aga",
+    "tipoTramite": "630303",
+    "url": "/aga/retorno-importacion-temporal/solicitud"
+  },
+  {
+    "id": "197",
+    "departmento": "aga",
+    "tipoTramite": "630307",
+    "url": "/aga/aeronaves-en-retorno-temporal/solicitud"
+  },
+  {
+    "id": "433",
+    "departmento": "aga",
+    "tipoTramite": "640102",
+    "url": "/aga/mantenimiento-marinas/solicitante"
+  },
+  {
+    "id": "598",
+    "departmento": "stps",
+    "tipoTramite": "680101",
+    "url": "/stps/restriccion-importacion-trabajo-forzoso"
   }
 ]
