@@ -154,3 +154,6 @@ npm run test:tramites:uat-ultrasist
 npm run test:tramites:uat-sat       
 npm run test:tramites (default uat-sat)
 ```
+
+npm run test:tramites:grep:uat-sat -- '\[(aga|agace)\]'
+
