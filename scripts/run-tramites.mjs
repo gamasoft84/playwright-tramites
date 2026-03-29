@@ -11,6 +11,7 @@
  *   npm run test:tramites -- --ambiente UAT_SAT --grep '\[cofepris\]'
  */
 import { spawnSync } from 'child_process';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { AMBIENTES } from '../ambientes.mjs';
@@ -135,6 +136,18 @@ function buildGrepFromFilters(f) {
 /** Ruta al CLI de Playwright (evita `npx` en Windows, donde a veces falla con "path specified"). */
 const PLAYWRIGHT_CLI = path.join(ROOT, 'node_modules', '@playwright', 'test', 'cli.js');
 
+const ARTIFACT_DIR_NAMES = ['screenshots', 'test-results','playwright-report'];
+
+/** Borra y recrea screenshots/ y test-results/ antes de cada corrida. */
+function cleanArtifactDirs() {
+  for (const name of ARTIFACT_DIR_NAMES) {
+    const dir = path.join(ROOT, name);
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  console.log('🧹 screenshots/ y test-results/ vaciados (nueva corrida).');
+}
+
 function main() {
   const argv = process.argv.slice(2);
   const args = parseArgs(argv);
@@ -172,6 +185,8 @@ function main() {
     pwArgs.push('--grep', grepPattern);
     console.log(`🔎 --grep: ${grepPattern}`);
   }
+
+  cleanArtifactDirs();
 
   const env = { ...process.env, TRAMITES_AMBIENTE: ambiente };
   console.log(`🌐 TRAMITES_AMBIENTE=${ambiente}`);

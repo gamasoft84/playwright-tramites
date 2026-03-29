@@ -12,7 +12,7 @@
 
 | Comando | Qué hace |
 |--------|-----------|
-| `npm run test:tramites` | **Único** punto de entrada: ambiente **obligatorio** (`--ambiente`), filtros opcionales (`--deps`, `--tipos`, `--ids`, o `--grep`). Ejecuta los tests, luego `enrich` del HTML y abre **`npx playwright show-report`** (salvo `--no-show-report`). |
+| `npm run test:tramites` | **Único** punto de entrada: ambiente **obligatorio** (`--ambiente`), filtros opcionales (`--deps`, `--tipos`, `--ids`, o `--grep`). **Antes** de correr Playwright vacía `screenshots/` y `test-results/`. Luego ejecuta los tests, `enrich` del HTML y abre el reporte (salvo `--no-show-report`). |
 | `npm run report:enrich` | Solo inyecta el resumen por dependencia en `playwright-report/index.html` (lee `test-results/results.json`). Útil si ya corriste los tests y quieres regenerar la banda sin repetir la suite. |
 
 El script `test` por defecto del `package.json` no está configurado para este proyecto; usa `test:tramites` para las pruebas de trámites.

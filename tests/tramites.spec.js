@@ -1,5 +1,12 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { test, expect } from '@playwright/test';
 import { getAmbienteConfig, loadTramitesNormalized } from '../ambientes.mjs';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+/** Siempre raíz del repo; rutas relativas `screenshots/...` fallan si cwd ≠ proyecto (p. ej. tras vaciar carpetas se nota que “no hay PNG”). */
+const SCREENSHOTS_DIR = path.join(__dirname, '..', 'screenshots');
 
 const ambiente = getAmbienteConfig();
 const BASE = ambiente.baseURL;
@@ -15,6 +22,10 @@ test.describe('Trámites', () => {
   // Paralelo entre trámites (cada test tiene su propia page). Timeout por test.
   test.describe.configure({ timeout: 45_000 });
 
+  test.beforeAll(() => {
+    fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+  });
+
   for (const tramite of tramites) {
     test(`[${tramite.departamento}][${tramite.tipoTramite}] ID ${tramite.id}`, async ({ page }) => {
 
@@ -23,14 +34,15 @@ test.describe('Trámites', () => {
       await page.waitForLoadState('networkidle');
 
       // 2️⃣ Busca el enlace por href — maneja duplicados y con/sin barra final
-      const path = tramite.url.replace(BASE, '');
-      const trimmed = path.replace(/\/$/, '') || '/';
+      // (no usar el nombre `path`: enmascararía el módulo `path` de Node y rompe path.join en screenshots)
+      const urlPath = tramite.url.replace(BASE, '');
+      const trimmed = urlPath.replace(/\/$/, '') || '/';
       const withSlash = trimmed === '/' ? '/' : `${trimmed}/`;
-      const hrefVariants = [...new Set([path, trimmed, withSlash, tramite.url])];
+      const hrefVariants = [...new Set([urlPath, trimmed, withSlash, tramite.url])];
       const locator = page.locator(hrefVariants.map((h) => `a[href="${h}"]`).join(', '));
       const count = await locator.count();
       if (count > 1) {
-        console.warn(`⚠️  WARNING: ${count} enlaces duplicados para ${path} — usando el primero`);
+        console.warn(`⚠️  WARNING: ${count} enlaces duplicados para ${urlPath} — usando el primero`);
       }
       await locator.first().click();
 
@@ -57,8 +69,8 @@ test.describe('Trámites', () => {
 
         // 📸 Screenshot del trámite cargado
         await page.screenshot({
-          path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}.png`,
-          fullPage: true
+          path: path.join(SCREENSHOTS_DIR, `${tramite.departamento}-${tramite.tipoTramite}.png`),
+          fullPage: true,
         });
 
       } catch (error) {
@@ -71,7 +83,7 @@ test.describe('Trámites', () => {
         if (!page.isClosed()) {
           try {
             await page.screenshot({
-              path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}-error.png`,
+              path: path.join(SCREENSHOTS_DIR, `${tramite.departamento}-${tramite.tipoTramite}-error.png`),
               fullPage: true,
             });
           } catch {
