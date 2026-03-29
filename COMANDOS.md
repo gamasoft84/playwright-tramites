@@ -161,26 +161,21 @@ npm run test:tramites -- --ambiente UAT_SAT --deps aga,agace
 # Por tipos de trámite (cualquier dependencia)
 npm run test:tramites -- --ambiente UAT_SAT --tipos 103,104,105
 
-# aga + tipos concretos
-npm run test:tramites -- --ambiente UAT_SAT --deps aga --tipos 103,104
 
 # Por ids del JSON
 npm run test:tramites -- --ambiente UAT_SAT --ids 604,172
 
-# Regex a mano (equivalente a varias dependencias)
-npm run test:tramites -- --ambiente UAT_SAT --grep '\[(aga|agace|se)\]'
-
 # Sin abrir el navegador al final
 npm run test:tramites -- --ambiente UAT_SAT --deps cofepris --no-show-report
 
+# Regex a mano (equivalente a varias dependencias)
+npm run test:tramites -- --ambiente UAT_SAT --grep '\[(aga|agace)\]' --no-show-report
+
+# aga + tipos concretos
+npm run test:tramites -- --ambiente UAT_SAT --deps aga --tipos 103,104 --no-show-report
 
 #Genera la documentación de las pruebas
 node ./scripts/generate-report-docx.js
 
-# enriquede el reporte de html de pruebas
-npm run report:enrich
-
-#Muestra reporte de pruebas
-npx playwright show-report
 
 ```
