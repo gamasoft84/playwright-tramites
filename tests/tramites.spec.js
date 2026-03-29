@@ -48,16 +48,18 @@ test.describe('Trámites', () => {
 
         console.log(`✅ OK: ${tramite.url}`);
 
+        // 3️⃣ Verifica que cargó correctamente (antes del screenshot OK para no sobrescribir PNG bueno si hay toast de error)
+        const body = await page.locator('body').textContent();
+        expect(body).not.toContain('NG04002');
+        expect(body).not.toContain('Cannot match any routes');
+        // Toast / alerta de error (p. ej. div.toast-message, role="alert")
+        expect(body).not.toMatch(/Ocurrió un error\.?/i);
+
         // 📸 Screenshot del trámite cargado
         await page.screenshot({
           path: `screenshots/${tramite.departamento}-${tramite.tipoTramite}.png`,
           fullPage: true
         });
-
-        // 3️⃣ Verifica que cargó correctamente
-        const body = await page.locator('body').textContent();
-        expect(body).not.toContain('NG04002');
-        expect(body).not.toContain('Cannot match any routes');
 
       } catch (error) {
         const msg = error.message.split('\n')[0];
