@@ -123,7 +123,7 @@ Genera **`reporte-tramites-<dd-mm-yyyy-hhmmss>.docx`** en la **raíz** (fecha/ho
 
 **Orden del documento:** portada → **tabla resumen** (correctas / fallidas / omitidas / total / % por dependencia desde `test-results/results.json`) → **tabla índice de errores** (fallos JSON + listas de tipos; columnas comparan con capturas `*-error.png` y `screenshots/error/`) → **TOC de Word** (solo secciones H1 = cada dependencia) → cuerpo por **dependencia** (H1): subtítulos **Sin error** y **Con error** (capturas OK primero, `-error` / `error/` al final), miniaturas ~130 px.
 
-**Capturas:** `screenshots/{dep}-{tipo}.png`, `{dep}-{tipo}-error.png`, `error/{dep}-{tipo}.png`, `*-resultado.png` (legacy).
+**Capturas:** `screenshots/{dep}-{tipo}-{id}.png`, `{dep}-{tipo}-{id}-error.png`, y el formato antiguo sin `id` sigue soportado en el generador DOCX; `error/*.png`, `*-resultado.png` (legacy).
 
 Tras las pruebas conviene tener `test-results/results.json` actualizado para las tablas estadísticas.
 
@@ -163,19 +163,21 @@ npm run test:tramites -- --ambiente UAT_SAT --tipos 103,104,105
 
 
 # Por ids del JSON
-npm run test:tramites -- --ambiente UAT_SAT --ids 604,172
+npm run test:tramites --ambiente UAT_SAT --ids 604,172
 
 # Sin abrir el navegador al final
-npm run test:tramites -- --ambiente UAT_SAT --deps cofepris --no-show-report
+npm run test:tramites --ambiente UAT_SAT --deps cofepris --no-show-report
 
 # Regex a mano (equivalente a varias dependencias)
-npm run test:tramites -- --ambiente UAT_SAT --grep '\[(aga|agace)\]' --no-show-report
+npm run test:tramites --ambiente UAT_SAT --grep '\[(aga|agace)\]' --no-show-report
 
 # aga + tipos concretos
-npm run test:tramites -- --ambiente UAT_SAT --deps aga --tipos 103,104 --no-show-report
+npm run test:tramites --ambiente UAT_SAT --deps aga --tipos 103,104 --no-show-report
 
 #Genera la documentación de las pruebas
 node ./scripts/generate-report-docx.js
+
+npm run test:tramites --ambiente UAT_ULTRASIST --grep '\[(aga|agace)\]'
 
 
 ```

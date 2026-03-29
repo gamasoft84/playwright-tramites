@@ -18,6 +18,10 @@ function isTimeoutError(error) {
   return /timeout|timed out|exceeded/i.test(String(error.message));
 }
 
+function capturaNombreBase(tramite) {
+  return `${tramite.departamento}-${tramite.tipoTramite}-${String(tramite.id)}`;
+}
+
 test.describe('Trámites', () => {
   // Paralelo entre trámites (cada test tiene su propia page). Timeout por test.
   test.describe.configure({ timeout: 45_000 });
@@ -69,7 +73,7 @@ test.describe('Trámites', () => {
 
         // 📸 Screenshot del trámite cargado
         await page.screenshot({
-          path: path.join(SCREENSHOTS_DIR, `${tramite.departamento}-${tramite.tipoTramite}.png`),
+          path: path.join(SCREENSHOTS_DIR, `${capturaNombreBase(tramite)}.png`),
           fullPage: true,
         });
 
@@ -83,7 +87,7 @@ test.describe('Trámites', () => {
         if (!page.isClosed()) {
           try {
             await page.screenshot({
-              path: path.join(SCREENSHOTS_DIR, `${tramite.departamento}-${tramite.tipoTramite}-error.png`),
+              path: path.join(SCREENSHOTS_DIR, `${capturaNombreBase(tramite)}-error.png`),
               fullPage: true,
             });
           } catch {

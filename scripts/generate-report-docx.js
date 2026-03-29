@@ -9,9 +9,9 @@
  * 5) Cuerpo: por dependencia (H1), miniaturas agrupadas: **sin error** primero, **con error** al final; tablas de una sola fila.
  *
  * Convención de archivos (alineada con tests/tramites.spec.js):
- *   screenshots/{dep}-{tipo}.png
- *   screenshots/{dep}-{tipo}-error.png
- *   screenshots/error/{dep}-{tipo}.png (legacy)
+ *   screenshots/{dep}-{tipo}-{id}.png
+ *   screenshots/{dep}-{tipo}-{id}-error.png
+ *   Legacy (2 segmentos sin id): {dep}-{tipo}.png y -error / error/
  *   *-resultado.png (legacy)
  */
 import {
@@ -198,10 +198,14 @@ function depSubsectionTitle(text) {
 function compareTramiteItems(a, b) {
   const na = Number(a.tipoTramite);
   const nb = Number(b.tipoTramite);
-  if (!Number.isNaN(na) && !Number.isNaN(nb)) return na - nb;
-  return String(a.tipoTramite).localeCompare(String(b.tipoTramite), undefined, {
+  if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
+  const tc = String(a.tipoTramite).localeCompare(String(b.tipoTramite), undefined, {
     numeric: true,
   });
+  if (tc !== 0) return tc;
+  const ia = a.idTramite != null ? String(a.idTramite) : '';
+  const ib = b.idTramite != null ? String(b.idTramite) : '';
+  return ia.localeCompare(ib, undefined, { numeric: true });
 }
 
 /** Por dependencia: primero capturas sin error, al final las de error; cada bloque ordenado por tipo. */
@@ -249,9 +253,22 @@ function parseNombreCaptura(filename) {
   }
   const partes = base.split('-');
   if (partes.length < 2) return null;
+  // Nuevo: {dep}-{tipo}-{idTramite} (≥3 segmentos; el último es id del JSON)
+  if (partes.length >= 3) {
+    const idTramite = partes[partes.length - 1];
+    const tipoTramite = partes[partes.length - 2];
+    const departamento = partes.slice(0, -2).join('-');
+    return {
+      departamento,
+      tipoTramite,
+      idTramite,
+      isErrorSuffix,
+    };
+  }
   return {
-    departamento: partes.slice(0, partes.length - 1).join('-'),
+    departamento: partes.slice(0, -1).join('-'),
     tipoTramite: partes[partes.length - 1],
+    idTramite: null,
     isErrorSuffix,
   };
 }
@@ -272,6 +289,7 @@ function collectScreenshotEntries() {
       isError: parsed.isErrorSuffix,
       departamento: parsed.departamento,
       tipoTramite: parsed.tipoTramite,
+      idTramite: parsed.idTramite,
     });
   }
 
@@ -287,6 +305,7 @@ function collectScreenshotEntries() {
         isError: true,
         departamento: parsed.departamento,
         tipoTramite: parsed.tipoTramite,
+        idTramite: parsed.idTramite,
       });
     }
   }
@@ -297,10 +316,14 @@ function collectScreenshotEntries() {
     if (a.isError !== b.isError) return a.isError ? 1 : -1;
     const na = Number(a.tipoTramite);
     const nb = Number(b.tipoTramite);
-    if (!Number.isNaN(na) && !Number.isNaN(nb)) return na - nb;
-    return String(a.tipoTramite).localeCompare(String(b.tipoTramite), undefined, {
+    if (!Number.isNaN(na) && !Number.isNaN(nb) && na !== nb) return na - nb;
+    const tc = String(a.tipoTramite).localeCompare(String(b.tipoTramite), undefined, {
       numeric: true,
     });
+    if (tc !== 0) return tc;
+    const ia = a.idTramite != null ? String(a.idTramite) : '';
+    const ib = b.idTramite != null ? String(b.idTramite) : '';
+    return ia.localeCompare(ib, undefined, { numeric: true });
   });
 
   return entries;
@@ -579,7 +602,9 @@ function thumbCell(item) {
         spacing: { after: 40 },
         children: [
           new TextRun({
-            text: `Tipo ${item.tipoTramite}${item.isError ? '  ⚠ error' : ''}`,
+            text: `Tipo ${item.tipoTramite}${
+              item.idTramite != null ? ` (id ${item.idTramite})` : ''
+            }${item.isError ? '  ⚠ error' : ''}`,
             bold: true,
             size: 18,
             color: item.isError ? 'B00020' : '1A5276',
@@ -811,7 +836,7 @@ if (archivos.length === 0) {
       spacing: { before: 400 },
       children: [
         new TextRun({
-          text: 'No hay PNG en screenshots/. Esperados: {dep}-{tipo}.png, {dep}-{tipo}-error.png o error/*.png',
+          text: 'No hay PNG en screenshots/. Esperados: {dep}-{tipo}-{id}.png, -error, legacy {dep}-{tipo}.png o error/*.png',
           italics: true,
           color: '994444',
         }),
