@@ -247,7 +247,7 @@ function splitTramitesOkThenError(items) {
   return { ok, err };
 }
 
-/** Fecha/hora local para portada y encabezado: dd/mm/yyyy HHmmss */
+/** Fecha/hora local para portada: dd/mm/yyyy HH:mm:ss */
 function formatReporteFechaHora(d) {
   const dd = String(d.getDate()).padStart(2, '0');
   const mm = String(d.getMonth() + 1).padStart(2, '0');
@@ -255,7 +255,7 @@ function formatReporteFechaHora(d) {
   const HH = String(d.getHours()).padStart(2, '0');
   const mi = String(d.getMinutes()).padStart(2, '0');
   const ss = String(d.getSeconds()).padStart(2, '0');
-  return `${dd}/${mm}/${yyyy} ${HH}${mi}${ss}`;
+  return `${dd}/${mm}/${yyyy} ${HH}:${mi}:${ss}`;
 }
 
 /**
