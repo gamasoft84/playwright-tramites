@@ -6,7 +6,7 @@
  * 3) Tabla «Errores por dependencia»: tipos fallidos según JSON + tipos con captura
  *    *-error.png o screenshots/error/* (cruce informativo).
  * 4) TOC de Word: solo títulos H1 = una sección por dependencia (saltos de página).
- * 5) Cuerpo: por dependencia, rejilla de miniaturas (varias por fila).
+ * 5) Cuerpo: por dependencia, miniaturas en una o varias tablas de **una sola fila** (Word suele perder filas en tablas altas; varias tablas cortas evita eso).
  *
  * Convención de archivos (alineada con tests/tramites.spec.js):
  *   screenshots/{dep}-{tipo}.png
@@ -49,8 +49,69 @@ const PLAYWRIGHT_CONFIG = path.join(ROOT, 'playwright.config.js');
 const TRAMITES_JSON = path.join(ROOT, 'data', 'tramites.json');
 
 const PAIR_RE = /\[([^\]]+)\]\[([^\]]+)\]/;
-const THUMB_COLS = 3;
+/** Máximo de columnas por fila; el número real se elige con thumbColumnCount (evita 3+1 en Word). */
+const THUMB_COLS_MAX = 3;
 const THUMB_WIDTH_PX = 130;
+
+/**
+ * Con 3 columnas y 4 capturas la última fila queda con 1 imagen + 2 celdas vacías; Word a menudo no muestra esa fila.
+ * Ajusta columnas para que la última fila no sea un “huérfano” suelto cuando hay alternativa razonable.
+ */
+function thumbColumnCount(n) {
+  if (n <= 0) return THUMB_COLS_MAX;
+  if (n === 1) return 1;
+  if (n === 2) return 2;
+  if (n === 3) return 3;
+  if (n % 3 === 1) {
+    if (n % 2 === 0) return 2;
+    return 4;
+  }
+  return THUMB_COLS_MAX;
+}
+
+const PNG_SIG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+
+/** CRC-32 (PNG) sobre type + data del chunk. */
+function pngCrc32(buf) {
+  let c = 0xffffffff;
+  for (let i = 0; i < buf.length; i++) {
+    c ^= buf[i];
+    for (let k = 0; k < 8; k++) {
+      c = c & 1 ? (c >>> 1) ^ 0xedb88320 : c >>> 1;
+    }
+  }
+  return (c ^ 0xffffffff) >>> 0;
+}
+
+/**
+ * docx deduplica imágenes por SHA1 del buffer; dos PNG idénticos en bytes
+ * comparten clave y el .docx puede dejar solo una relación / una imagen visible.
+ * Un chunk tEXt (metadato, sin cambiar píxeles) fuerza hashes distintos por captura.
+ */
+function pngWithUniqueDocxKey(pngBuf, uniqueText) {
+  if (pngBuf.length < 24 || !pngBuf.subarray(0, 8).equals(PNG_SIG)) return pngBuf;
+  const kw = Buffer.from('docxref', 'latin1');
+  const tx = Buffer.from(String(uniqueText), 'utf8');
+  const data = Buffer.concat([kw, Buffer.from([0]), tx]);
+  if (data.length > 65535) return pngBuf;
+  const typeBuf = Buffer.from('tEXt');
+  const lenBuf = Buffer.alloc(4);
+  lenBuf.writeUInt32BE(data.length, 0);
+  const crcBuf = Buffer.alloc(4);
+  crcBuf.writeUInt32BE(pngCrc32(Buffer.concat([typeBuf, data])), 0);
+  const injected = Buffer.concat([lenBuf, typeBuf, data, crcBuf]);
+
+  let pos = 8;
+  while (pos + 12 <= pngBuf.length) {
+    const len = pngBuf.readUInt32BE(pos);
+    const typ = pngBuf.slice(pos + 4, pos + 8).toString('ascii');
+    if (typ === 'IEND') {
+      return Buffer.concat([pngBuf.subarray(0, pos), injected, pngBuf.subarray(pos)]);
+    }
+    pos += 12 + len;
+  }
+  return pngBuf;
+}
 
 /** Origen del front (misma idea que `use.baseURL` en Playwright). */
 function resolveBaseUrl() {
@@ -435,7 +496,8 @@ function buildErrorsTable(failedByDep, errorPngByDep) {
 
 function thumbCell(item) {
   const imagePath = path.join(SCREENSHOTS_DIR, item.relPath);
-  const buf = fs.readFileSync(imagePath);
+  const raw = fs.readFileSync(imagePath);
+  const buf = pngWithUniqueDocxKey(raw, item.archivoDisplay || item.relPath);
   const dim = imageSize(buf);
   const w = THUMB_WIDTH_PX;
   const h = Math.max(1, Math.round((dim.height * w) / dim.width));
@@ -484,30 +546,36 @@ function thumbCell(item) {
   });
 }
 
-function buildThumbnailTable(items) {
-  const colW = Math.floor(9000 / THUMB_COLS);
-  const columnWidths = Array(THUMB_COLS).fill(colW);
-  const rows = [];
-
-  for (let i = 0; i < items.length; i += THUMB_COLS) {
-    const chunk = items.slice(i, i + THUMB_COLS);
-    const cells = chunk.map((it) => thumbCell(it));
-    while (cells.length < THUMB_COLS) {
-      cells.push(
-        new TableCell({
-          children: [new Paragraph({})],
-        }),
-      );
-    }
-    rows.push(new TableRow({ children: cells }));
-  }
-
-  return new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: TableBorders.NONE,
-    columnWidths,
-    rows,
+function emptyThumbCell() {
+  return new TableCell({
+    children: [new Paragraph({ text: '\u00a0', spacing: { after: 120 } })],
   });
+}
+
+/**
+ * Varias tablas de 1 fila en lugar de una tabla multirrelacionada: Word a veces no pinta
+ * la 2.ª fila si además se fija altura/cantSplit, o colapsa filas con celdas vacías.
+ */
+function buildThumbnailTables(items) {
+  const cols = thumbColumnCount(items.length);
+  const colW = Math.floor(9000 / cols);
+  const columnWidths = Array(cols).fill(colW);
+  const tables = [];
+
+  for (let i = 0; i < items.length; i += cols) {
+    const chunk = items.slice(i, i + cols);
+    const cells = chunk.map((it) => thumbCell(it));
+    while (cells.length < cols) cells.push(emptyThumbCell());
+    tables.push(
+      new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        borders: TableBorders.NONE,
+        columnWidths,
+        rows: [new TableRow({ children: cells })],
+      }),
+    );
+  }
+  return tables;
 }
 
 // ─── Datos ───
@@ -662,7 +730,10 @@ for (let di = 0; di < departamentosOrdenados.length; di++) {
     }),
   );
 
-  children.push(buildThumbnailTable(tramites));
+  for (const tbl of buildThumbnailTables(tramites)) {
+    children.push(tbl);
+    children.push(new Paragraph({ spacing: { after: 160 } }));
+  }
 }
 
 if (archivos.length === 0) {
