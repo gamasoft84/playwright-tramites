@@ -132,7 +132,8 @@ function buildGrepFromFilters(f) {
   return null;
 }
 
-const shell = process.platform === 'win32';
+/** Ruta al CLI de Playwright (evita `npx` en Windows, donde a veces falla con "path specified"). */
+const PLAYWRIGHT_CLI = path.join(ROOT, 'node_modules', '@playwright', 'test', 'cli.js');
 
 function main() {
   const argv = process.argv.slice(2);
@@ -166,7 +167,7 @@ function main() {
     });
   }
 
-  const pwArgs = ['playwright', 'test', 'tests/tramites.spec.js'];
+  const pwArgs = ['test', 'tests/tramites.spec.js'];
   if (grepPattern) {
     pwArgs.push('--grep', grepPattern);
     console.log(`🔎 --grep: ${grepPattern}`);
@@ -175,7 +176,11 @@ function main() {
   const env = { ...process.env, TRAMITES_AMBIENTE: ambiente };
   console.log(`🌐 TRAMITES_AMBIENTE=${ambiente}`);
 
-  const pw = spawnSync('npx', pwArgs, { cwd: ROOT, stdio: 'inherit', shell, env });
+  const pw = spawnSync(process.execPath, [PLAYWRIGHT_CLI, ...pwArgs], {
+    cwd: ROOT,
+    stdio: 'inherit',
+    env,
+  });
 
   spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'enrich-playwright-report.mjs')], {
     cwd: ROOT,
@@ -183,7 +188,11 @@ function main() {
   });
 
   if (!args.noShowReport) {
-    spawnSync('npx', ['playwright', 'show-report'], { cwd: ROOT, stdio: 'inherit', shell });
+    spawnSync(process.execPath, [PLAYWRIGHT_CLI, 'show-report'], {
+      cwd: ROOT,
+      stdio: 'inherit',
+      env,
+    });
   }
 
   const code = pw.status == null ? (pw.error ? 1 : 0) : pw.status;
