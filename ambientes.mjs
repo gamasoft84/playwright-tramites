@@ -29,7 +29,7 @@ export function getAmbienteConfig() {
   if (!KEYS.has(key)) {
     throw new Error(
       `Defina TRAMITES_AMBIENTE. Valores: ${[...KEYS].join(', ')}. ` +
-        'Ej.: npm run test:tramites:uat-sat   o   PowerShell: $env:TRAMITES_AMBIENTE="UAT_ULTRASIST"; npx playwright test'
+        'Ej.: npm run test:tramites -- --ambiente UAT_SAT   o   PowerShell: $env:TRAMITES_AMBIENTE="UAT_ULTRASIST"; npx playwright test'
     );
   }
   return { ambienteKey: key, ...AMBIENTES[key] };

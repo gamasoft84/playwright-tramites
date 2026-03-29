@@ -12,12 +12,40 @@
 
 | Comando | Qué hace |
 |--------|-----------|
-| `npm run test:tramites` | Ejecuta `tests/tramites.spec.js` y **después** corre `scripts/enrich-playwright-report.mjs`. Usa `;` entre comandos: el enriquecimiento del HTML corre **aunque haya tests fallidos**. |
-| `npm run test:tramites:grep` | `--grep` con patrón que pasas tras `--`, luego **enrich** del HTML y **`npx playwright show-report`** (abre el reporte en el navegador; el proceso sigue hasta que cierres el servidor, p. ej. Ctrl+C en la terminal). |
-| `npm run test:tramites:aga-agace` | Atajo con patrón fijo `[(aga|agace)]`; mismo flujo (tests → enrich → **show-report**). |
+| `npm run test:tramites` | **Único** punto de entrada: ambiente **obligatorio** (`--ambiente`), filtros opcionales (`--deps`, `--tipos`, `--ids`, o `--grep`). Ejecuta los tests, luego `enrich` del HTML y abre **`npx playwright show-report`** (salvo `--no-show-report`). |
 | `npm run report:enrich` | Solo inyecta el resumen por dependencia en `playwright-report/index.html` (lee `test-results/results.json`). Útil si ya corriste los tests y quieres regenerar la banda sin repetir la suite. |
 
 El script `test` por defecto del `package.json` no está configurado para este proyecto; usa `test:tramites` para las pruebas de trámites.
+
+### `test:tramites` — ambiente y filtros
+
+Siempre debes indicar el ambiente:
+
+- `UAT_SAT` → `https://wwwdev.ventanillaunica.gob.mx` y `data/tramites_UAT_SAT.json`
+- `UAT_ULTRASIST` → `https://front.v30.ultrasist.net` y `data/tramites_UAT_ULTRASIST.json`
+
+Título de cada test (para `--grep` interno): **`[departamento][tipoTramite] ID <id>`** (ej. `[aga][103] ID 604`).
+
+| Opción | Descripción |
+|--------|-------------|
+| `--ambiente UAT_SAT` \| `UAT_ULTRASIST` | Obligatorio. |
+| `--deps aga,agace` | Filtra por departamento (primer corchete). |
+| `--tipos 103,104,105` | Filtra por `tipoTramite` (segundo corchete). |
+| `--ids 604,172` | Filtra por el `id` del JSON (texto `ID xxx` al final del título). |
+| `--grep '<regex>'` | Patrón manual para Playwright; **tiene prioridad** sobre `--deps` / `--tipos` / `--ids`. |
+| `--no-show-report` | No abre el reporte HTML al final (sí ejecuta enrich). |
+
+`--deps`, `--tipos` e `--ids` se pueden **combinar** (se traducen a un solo `--grep` con lógica **Y**).
+
+
+
+Ayuda en consola:
+
+```bash
+npm run test:tramites -- --help
+```
+
+Tras `test:tramites`, el servidor de **`show-report`** sigue activo hasta que lo cierres (Ctrl+C en la terminal).
 
 ---
 
@@ -49,6 +77,18 @@ Abrir el último reporte HTML generado:
 
 ```bash
 npx playwright show-report
+```
+
+Si llamas a Playwright **sin** pasar por `npm run test:tramites`, debes definir **`TRAMITES_AMBIENTE`** (`UAT_SAT` o `UAT_ULTRASIST`), porque `playwright.config.js` lo exige:
+
+```bash
+TRAMITES_AMBIENTE=UAT_SAT npx playwright test tests/tramites.spec.js
+```
+
+Equivalente manual + enrich (sin abrir el navegador):
+
+```bash
+TRAMITES_AMBIENTE=UAT_SAT npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; npm run report:enrich
 ```
 
 ---
@@ -88,7 +128,7 @@ Genera **`reporte-tramites.docx`** en la **raíz**.
 Tras las pruebas conviene tener `test-results/results.json` actualizado para las tablas estadísticas.
 
 ```bash
-node scripts/generate-report-docx.js
+node ./scripts/generate-report-docx.js
 ```
 
 ---
@@ -103,57 +143,44 @@ node scripts/generate-report-docx.js
 npx playwright test --config=playwright.config_Login.js
 ```
 
-## Filtrar por dependencia en el título (`--grep`)
 
-Playwright filtra por el **título completo** del test (incluye el `describe`), p. ej. `Trámites › [aga][40401] ID 132`.
 
-**Patrón parametrizable (npm):** todo lo que va después de `--` se pasa a Playwright como único argumento de `--grep`.
 
-```bash
-# Cofepris solamente
-npm run test:tramites:grep -- '\[cofepris\]'
-
-# Varias dependencias (regex)
-npm run test:tramites:grep -- '\[(aga|agace|se)\]'
-
-# Atajo fijo aga + agace
-npm run test:tramites:aga-agace
-```
-
-`test:tramites:grep` y `test:tramites:aga-agace` ejecutan al final **`npx playwright show-report`** (servidor local del reporte HTML). Cierra la terminal o interrumpe con Ctrl+C cuando termines de revisarlo.
-
-Equivalente manual + enrich (sin abrir el navegador):
+Ejemplos:
 
 ```bash
-npx playwright test tests/tramites.spec.js --grep '\[(aga|agace)\]' ; npm run report:enrich
-```
+# Todos los trámites del ambiente SAT
+npm run test:tramites -- --ambiente UAT_SAT
+
+# Ultrasist completo
+npm run test:tramites -- --ambiente UAT_ULTRASIST
+
+# Solo aga y agace
+npm run test:tramites -- --ambiente UAT_SAT --deps aga,agace
+
+# Por tipos de trámite (cualquier dependencia)
+npm run test:tramites -- --ambiente UAT_SAT --tipos 103,104,105
+
+# aga + tipos concretos
+npm run test:tramites -- --ambiente UAT_SAT --deps aga --tipos 103,104
+
+# Por ids del JSON
+npm run test:tramites -- --ambiente UAT_SAT --ids 604,172
+
+# Regex a mano (equivalente a varias dependencias)
+npm run test:tramites -- --ambiente UAT_SAT --grep '\[(aga|agace|se)\]'
+
+# Sin abrir el navegador al final
+npm run test:tramites -- --ambiente UAT_SAT --deps cofepris --no-show-report
 
 
-
-## Pruebas por dependencias
-```bash
-npm run test:tramites
-npm run test:tramites:grep -- '\[(aga|agace)\]'
-npm run test:tramites:grep -- '\[cofepris\]'
-npm run test:tramites:grep -- '\[(aga|agace|se)\]'
-
-npm run test:tramites:grep -- '\[(semarnat|agricultura|inbal)\]'
-```
-
-
-
-## Generar .DOCX
-```bash
+#Genera la documentación de las pruebas
 node ./scripts/generate-report-docx.js
+
+# enriquede el reporte de html de pruebas
+npm run report:enrich
+
+#Muestra reporte de pruebas
+npx playwright show-report
+
 ```
-
-
-## Usar ambientes
-```bash
-npm run test:tramites:uat-ultrasist 
-npm run test:tramites:uat-sat       
-npm run test:tramites (default uat-sat)
-```
-
-npm run test:tramites:grep:uat-sat -- '\[(aga|agace)\]'
-

@@ -5,14 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:tramites": "npx cross-env TRAMITES_AMBIENTE=UAT_SAT playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
-    "test:tramites:uat-ultrasist": "npx cross-env TRAMITES_AMBIENTE=UAT_ULTRASIST playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
-    "test:tramites:uat-sat": "npx cross-env TRAMITES_AMBIENTE=UAT_SAT playwright test tests/tramites.spec.js ; node scripts/enrich-playwright-report.mjs",
-    "test:tramites:grep": "node scripts/run-tramites-grep.mjs",
-    "test:tramites:grep:uat-sat": "npx cross-env TRAMITES_AMBIENTE=UAT_SAT node scripts/run-tramites-grep.mjs",
-    "test:tramites:grep:uat-ultrasist": "npx cross-env TRAMITES_AMBIENTE=UAT_ULTRASIST node scripts/run-tramites-grep.mjs",
-    "test:tramites:aga-agace": "npx cross-env TRAMITES_AMBIENTE=UAT_SAT node scripts/run-tramites-grep.mjs '\\[(aga|agace)\\]'",
-    "test:tramites:aga-agace:uat-ultrasist": "npx cross-env TRAMITES_AMBIENTE=UAT_ULTRASIST node scripts/run-tramites-grep.mjs '\\[(aga|agace)\\]'",
+    "test:tramites": "node scripts/run-tramites.mjs",
     "report:enrich": "node scripts/enrich-playwright-report.mjs"
   },
   "keywords": [],
@@ -20,8 +13,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "cross-env": "^10.1.0"
+    "@playwright/test": "^1.58.2"
   },
   "dependencies": {
     "docx": "^9.6.1",
