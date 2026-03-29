@@ -179,6 +179,31 @@ function sectionTitle(text) {
   });
 }
 
+/** Fecha/hora local para portada y encabezado: dd/mm/yyyy HHmmss */
+function formatReporteFechaHora(d) {
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = String(d.getFullYear());
+  const HH = String(d.getHours()).padStart(2, '0');
+  const mi = String(d.getMinutes()).padStart(2, '0');
+  const ss = String(d.getSeconds()).padStart(2, '0');
+  return `${dd}/${mm}/${yyyy} ${HH}${mi}${ss}`;
+}
+
+/**
+ * Sufijo para nombre de archivo: dd-mm-yyyy-hhmmss (hora en bloque de 6 dígitos;
+ * en Windows no se pueden usar / ni : en el nombre).
+ */
+function formatReporteNombreArchivo(d) {
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = String(d.getFullYear());
+  const HH = String(d.getHours()).padStart(2, '0');
+  const mi = String(d.getMinutes()).padStart(2, '0');
+  const ss = String(d.getSeconds()).padStart(2, '0');
+  return `${dd}-${mm}-${yyyy}-${HH}${mi}${ss}`;
+}
+
 /** Quita sufijos -error / -resultado antes de partir por guiones. */
 function parseNombreCaptura(filename) {
   let base = path.basename(filename, path.extname(filename));
@@ -629,16 +654,14 @@ children.push(
 );
 
 const ahora = new Date();
+const fechaHoraDoc = formatReporteFechaHora(ahora);
 children.push(
   new Paragraph({
     alignment: AlignmentType.CENTER,
     spacing: { after: 120 },
     children: [
       new TextRun({
-        text: `Generado: ${ahora.toLocaleString('es-MX', {
-          dateStyle: 'long',
-          timeStyle: 'short',
-        })}`,
+        text: `Generado: ${fechaHoraDoc}`,
         size: 22,
         color: '666666',
         font: 'Arial',
@@ -794,6 +817,18 @@ const doc = new Document({
                 }),
               ],
             }),
+            new Paragraph({
+              alignment: AlignmentType.RIGHT,
+              spacing: { after: 40 },
+              children: [
+                new TextRun({
+                  text: fechaHoraDoc,
+                  size: 16,
+                  color: 'BBBBBB',
+                  font: 'Arial',
+                }),
+              ],
+            }),
           ],
         }),
       },
@@ -828,7 +863,10 @@ const doc = new Document({
   ],
 });
 
-const outputPath = path.join(ROOT, 'reporte-tramites.docx');
+const outputPath = path.join(
+  ROOT,
+  `reporte-tramites-${formatReporteNombreArchivo(ahora)}.docx`,
+);
 
 Packer.toBuffer(doc).then((buffer) => {
   fs.writeFileSync(outputPath, buffer);
