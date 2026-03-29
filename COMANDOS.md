@@ -121,7 +121,7 @@ Requiere haber corrido los tests al menos una vez con el reporter `json` activo 
 
 Genera **`reporte-tramites-<dd-mm-yyyy-hhmmss>.docx`** en la **raíz** (fecha/hora local; la hora va en bloque `hhmmss`; guiones solo en la fecha porque `/` y `:` no son válidos en Windows).
 
-**Orden del documento:** portada → **tabla resumen** (correctas / fallidas / omitidas / total / % por dependencia desde `test-results/results.json`) → **tabla índice de errores** (fallos JSON + listas de tipos; columnas comparan con capturas `*-error.png` y `screenshots/error/`) → **TOC de Word** (solo secciones H1 = cada dependencia) → cuerpo con **rejilla de miniaturas** (3 columnas, ~130 px de ancho) para meter varias capturas por página.
+**Orden del documento:** portada → **tabla resumen** (correctas / fallidas / omitidas / total / % por dependencia desde `test-results/results.json`) → **tabla índice de errores** (fallos JSON + listas de tipos; columnas comparan con capturas `*-error.png` y `screenshots/error/`) → **TOC de Word** (solo secciones H1 = cada dependencia) → cuerpo por **dependencia** (H1): subtítulos **Sin error** y **Con error** (capturas OK primero, `-error` / `error/` al final), miniaturas ~130 px.
 
 **Capturas:** `screenshots/{dep}-{tipo}.png`, `{dep}-{tipo}-error.png`, `error/{dep}-{tipo}.png`, `*-resultado.png` (legacy).
 

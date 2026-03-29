@@ -6,7 +6,7 @@
  * 3) Tabla «Errores por dependencia»: tipos fallidos según JSON + tipos con captura
  *    *-error.png o screenshots/error/* (cruce informativo).
  * 4) TOC de Word: solo títulos H1 = una sección por dependencia (saltos de página).
- * 5) Cuerpo: por dependencia, miniaturas en una o varias tablas de **una sola fila** (Word suele perder filas en tablas altas; varias tablas cortas evita eso).
+ * 5) Cuerpo: por dependencia (H1), miniaturas agrupadas: **sin error** primero, **con error** al final; tablas de una sola fila.
  *
  * Convención de archivos (alineada con tests/tramites.spec.js):
  *   screenshots/{dep}-{tipo}.png
@@ -177,6 +177,38 @@ function sectionTitle(text) {
       }),
     ],
   });
+}
+
+/** Subtítulo dentro de cada dependencia (no va al TOC). */
+function depSubsectionTitle(text) {
+  return new Paragraph({
+    spacing: { before: 240, after: 140 },
+    children: [
+      new TextRun({
+        text,
+        bold: true,
+        size: 24,
+        font: 'Arial',
+        color: '1A5276',
+      }),
+    ],
+  });
+}
+
+function compareTramiteItems(a, b) {
+  const na = Number(a.tipoTramite);
+  const nb = Number(b.tipoTramite);
+  if (!Number.isNaN(na) && !Number.isNaN(nb)) return na - nb;
+  return String(a.tipoTramite).localeCompare(String(b.tipoTramite), undefined, {
+    numeric: true,
+  });
+}
+
+/** Por dependencia: primero capturas sin error, al final las de error; cada bloque ordenado por tipo. */
+function splitTramitesOkThenError(items) {
+  const ok = items.filter((t) => !t.isError).sort(compareTramiteItems);
+  const err = items.filter((t) => t.isError).sort(compareTramiteItems);
+  return { ok, err };
 }
 
 /** Fecha/hora local para portada y encabezado: dd/mm/yyyy HHmmss */
@@ -736,6 +768,9 @@ for (let di = 0; di < departamentosOrdenados.length; di++) {
     st != null
       ? `Estadística: ${st.passed} OK · ${st.failed} fallidas · ${st.skipped} omitidas`
       : 'Sin datos de results.json para esta dependencia.';
+  const { ok: tramitesOk, err: tramitesErr } = splitTramitesOkThenError(tramites);
+  const nOk = tramitesOk.length;
+  const nErr = tramitesErr.length;
   children.push(
     new Paragraph({
       spacing: { after: 200 },
@@ -744,7 +779,7 @@ for (let di = 0; di < departamentosOrdenados.length; di++) {
       },
       children: [
         new TextRun({
-          text: `${tramites.length} captura(s) · ${statLine}`,
+          text: `${tramites.length} captura(s) (${nOk} sin error · ${nErr} con error) · ${statLine}`,
           size: 20,
           color: '666666',
           font: 'Arial',
@@ -753,9 +788,20 @@ for (let di = 0; di < departamentosOrdenados.length; di++) {
     }),
   );
 
-  for (const tbl of buildThumbnailTables(tramites)) {
-    children.push(tbl);
-    children.push(new Paragraph({ spacing: { after: 160 } }));
+  if (nOk > 0) {
+    children.push(depSubsectionTitle('Trámites Sin error'));
+    for (const tbl of buildThumbnailTables(tramitesOk)) {
+      children.push(tbl);
+      children.push(new Paragraph({ spacing: { after: 160 } }));
+    }
+  }
+
+  if (nErr > 0) {
+    children.push(depSubsectionTitle('Trámites con error'));
+    for (const tbl of buildThumbnailTables(tramitesErr)) {
+      children.push(tbl);
+      children.push(new Paragraph({ spacing: { after: 160 } }));
+    }
   }
 }
 
