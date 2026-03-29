@@ -3,10 +3,12 @@
  * 1) Portada (título, fecha) — sin nivel de esquema → no entra al TOC automático.
  * 2) Tabla «Resumen estadístico»: OK / fallidas / omitidas / total / % por dependencia
  *    (fuente: test-results/results.json si existe).
- * 3) Tabla «Errores por dependencia»: tipos fallidos según JSON + tipos con captura
- *    *-error.png o screenshots/error/* (cruce informativo).
- * 4) TOC de Word: solo títulos H1 = una sección por dependencia (saltos de página).
- * 5) Cuerpo: por dependencia (H1), miniaturas agrupadas: **sin error** primero, **con error** al final; tablas de una sola fila.
+![1774821927529](image/generate-report-docx/1774821927529.png)![1774821931560](image/generate-report-docx/1774821931560.png)![1774821944044](image/generate-report-docx/1774821944044.png)![1774821946158](image/generate-report-docx/1774821946158.png)![1774821949861](image/generate-report-docx/1774821949861.png)![1774821968778](image/generate-report-docx/1774821968778.png) * 3) «Tramites con error por dependencia» (subtítulo, no entra al TOC) + tabla; columna Dependencia
+ *    con enlace al marcador «Trámites con error» de esa dependencia si hay capturas -error.
+ *    Índice de contenidos (TOC) siempre en nueva página.
+ * 4) TOC de Word: H1 anteriores + una sección H1 por dependencia (saltos de página).
+ * 5) Cuerpo: por dependencia (H1); miniaturas sin error primero; **Trámites con error** en página nueva
+ *    con marcador (enlace desde la tabla de errores, columna Dependencia).
  *
  * Convención de archivos (alineada con tests/tramites.spec.js):
  *   screenshots/{dep}-{tipo}-{id}.png
@@ -35,6 +37,9 @@ import {
   ShadingType,
   PageBreak,
   VerticalAlignTable,
+  Bookmark,
+  InternalHyperlink,
+  UnderlineType,
 } from 'docx';
 import fs from 'fs';
 import path from 'path';
@@ -47,6 +52,7 @@ const SCREENSHOTS_DIR = path.join(ROOT, 'screenshots');
 const RESULTS_JSON = path.join(ROOT, 'test-results', 'results.json');
 const PLAYWRIGHT_CONFIG = path.join(ROOT, 'playwright.config.js');
 const TRAMITES_JSON = path.join(ROOT, 'data', 'tramites.json');
+const AMBIENTES_MJS = path.join(ROOT, 'ambientes.mjs');
 
 const PAIR_RE = /\[([^\]]+)\]\[([^\]]+)\]/;
 /** Máximo de columnas por fila; el número real se elige con thumbColumnCount (evita 3+1 en Word). */
@@ -113,13 +119,34 @@ function pngWithUniqueDocxKey(pngBuf, uniqueText) {
   return pngBuf;
 }
 
+/**
+ * Lee `ambientes.mjs` sin ejecutarlo: el bloque del ambiente (env o UAT_SAT por defecto)
+ * incluye baseURL entre comillas.
+ */
+function baseUrlFromAmbientesMjs() {
+  if (!fs.existsSync(AMBIENTES_MJS)) return null;
+  const txt = fs.readFileSync(AMBIENTES_MJS, 'utf8');
+  const key = (process.env.TRAMITES_AMBIENTE || 'UAT_SAT').replace(/[^a-zA-Z0-9_]/g, '');
+  if (!key) return null;
+  const blockRe = new RegExp(
+    `\\b${key}\\s*:\\s*\\{[\\s\\S]*?\\bbaseURL\\s*:\\s*['"]([^'"]+)['"]`,
+  );
+  const m = txt.match(blockRe);
+  if (m) return m[1].trim();
+  const any = txt.match(/baseURL:\s*['"]([^'"]+)['"]/);
+  return any ? any[1].trim() : null;
+}
+
 /** Origen del front (misma idea que `use.baseURL` en Playwright). */
 function resolveBaseUrl() {
   if (fs.existsSync(PLAYWRIGHT_CONFIG)) {
     const txt = fs.readFileSync(PLAYWRIGHT_CONFIG, 'utf8');
+    // Literal en config (legacy); si es `baseURL` desde getAmbienteConfig(), falla y se usa ambientes.mjs
     const m = txt.match(/baseURL\s*:\s*['"]([^'"]+)['"]/);
     if (m) return m[1].trim();
   }
+  const fromAmbientes = baseUrlFromAmbientesMjs();
+  if (fromAmbientes) return fromAmbientes;
   if (fs.existsSync(TRAMITES_JSON)) {
     try {
       const arr = JSON.parse(fs.readFileSync(TRAMITES_JSON, 'utf8'));
@@ -193,6 +220,11 @@ function depSubsectionTitle(text) {
       }),
     ],
   });
+}
+
+/** Marcador estable para hipervínculos internos (solo letras, números y _). */
+function tramErrBookmarkId(departamento) {
+  return `tram_err_${String(departamento).replace(/[^a-zA-Z0-9_]/g, '_')}`;
 }
 
 function compareTramiteItems(a, b) {
@@ -424,6 +456,32 @@ function bodyCell(text, opts = {}) {
   });
 }
 
+/** Celda dependencia: hipervínculo al marcador tram_err_* si hay sección con capturas de error. */
+function bodyCellDependenciaConEnlaceTramErr(dep, tieneMarcador) {
+  if (!tieneMarcador) return bodyCell(dep);
+  return new TableCell({
+    margins: { top: 80, bottom: 80, left: 120, right: 120 },
+    children: [
+      new Paragraph({
+        children: [
+          new InternalHyperlink({
+            anchor: tramErrBookmarkId(dep),
+            children: [
+              new TextRun({
+                text: dep,
+                size: 21,
+                font: 'Arial',
+                color: '0563C1',
+                underline: { type: UnderlineType.SINGLE },
+              }),
+            ],
+          }),
+        ],
+      }),
+    ],
+  });
+}
+
 function buildStatsTable(statsByDep) {
   const deps = Object.keys(statsByDep).sort((a, b) => a.localeCompare(b, 'es'));
   if (deps.length === 0) {
@@ -521,8 +579,8 @@ function formatTipoList(set) {
   return [...set].sort((a, b) => Number(a) - Number(b) || String(a).localeCompare(String(b))).join(', ');
 }
 
-/** Tabla: dep | # fallos JSON | tipos (JSON) | tipos con PNG error */
-function buildErrorsTable(failedByDep, errorPngByDep) {
+/** Tabla: dep | # fallos JSON | tipos (JSON) | tipos con PNG error. `depsConMarcadorTramErr`: deps con sección «Trámites con error» en el cuerpo. */
+function buildErrorsTable(failedByDep, errorPngByDep, depsConMarcadorTramErr) {
   const deps = new Set([...failedByDep.keys(), ...Object.keys(errorPngByDep)]);
   const sorted = [...deps].filter((d) => {
     const fj = failedByDep.get(d)?.size || 0;
@@ -555,10 +613,11 @@ function buildErrorsTable(failedByDep, errorPngByDep) {
   for (const dep of sorted) {
     const jsonSet = failedByDep.get(dep) || new Set();
     const pngSet = errorPngByDep[dep] || new Set();
+    const tieneMarcador = depsConMarcadorTramErr.has(dep);
     rows.push(
       new TableRow({
         children: [
-          bodyCell(dep),
+          bodyCellDependenciaConEnlaceTramErr(dep, tieneMarcador),
           bodyCell(jsonSet.size),
           bodyCell(formatTipoList(jsonSet))
         ],
@@ -682,13 +741,22 @@ const departamentosOrdenados = Object.keys(porDepartamento).sort((a, b) =>
   a.localeCompare(b, 'es'),
 );
 
+/** Dependencias que tendrán marcador «Trámites con error» (enlace desde la tabla de errores). */
+const depsConMarcadorTramErr = new Set();
+for (const d of departamentosOrdenados) {
+  const { err } = splitTramitesOkThenError(porDepartamento[d]);
+  if (err.length > 0) depsConMarcadorTramErr.add(d);
+}
+
 console.log(`🏢 Dependencias con captura: ${departamentosOrdenados.join(', ') || '(ninguna)'}`);
 
 const baseUrl = resolveBaseUrl();
 if (baseUrl) {
   console.log(`🌐 Base URL del entorno: ${baseUrl}`);
 } else {
-  console.warn('⚠️  No se detectó baseURL (playwright.config.js / tramites.json / results.json).');
+  console.warn(
+    '⚠️  No se detectó baseURL (playwright.config literal, ambientes.mjs, data/tramites.json o results.json).',
+  );
 }
 
 const children = [];
@@ -749,9 +817,20 @@ children.push(sectionTitle('Resumen estadístico (por dependencia)'));
 
 children.push(buildStatsTable(statsByDep));
 
-children.push(sectionTitle('Índice de errores por dependencia'));
+children.push(
+  new Paragraph({
+    children: [new PageBreak()],
+  }),
+);
+children.push(sectionTitle('Tramites con error por dependencia'));
 
-children.push(buildErrorsTable(failedByDep, errorPngByDep));
+children.push(buildErrorsTable(failedByDep, errorPngByDep, depsConMarcadorTramErr));
+
+children.push(
+  new Paragraph({
+    children: [new PageBreak()],
+  }),
+);
 
 children.push(sectionTitle('Índice de contenidos (secciones por dependencia)'));
 children.push(
@@ -822,7 +901,26 @@ for (let di = 0; di < departamentosOrdenados.length; di++) {
   }
 
   if (nErr > 0) {
-    children.push(depSubsectionTitle('Trámites con error'));
+    children.push(
+      new Paragraph({
+        pageBreakBefore: true,
+        spacing: { before: 240, after: 140 },
+        children: [
+          new Bookmark({
+            id: tramErrBookmarkId(departamento),
+            children: [
+              new TextRun({
+                text: 'Trámites con error',
+                bold: true,
+                size: 24,
+                font: 'Arial',
+                color: '1A5276',
+              }),
+            ],
+          }),
+        ],
+      }),
+    );
     for (const tbl of buildThumbnailTables(tramitesErr)) {
       children.push(tbl);
       children.push(new Paragraph({ spacing: { after: 160 } }));
